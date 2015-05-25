@@ -1,0 +1,45 @@
+
+播呀接口说明文档
+
+一.获取音频信息接口
+	1.接口地址；http://m.boyakids.cn/?_c=api&_a=item&i=23&a=0&yn=0&s=0
+	2.接口传入参数说明：
+		A. _c: controller名称，保持默认api；
+		B. _a: action名称，默认item；
+		C. i: item_id，音频ID，调用时填写音频ID；
+		D. a: album_id，专辑ID，调用时填写专辑ID，如果无，可以不填；
+		E. s: subject_id，主题ID，可以支持多个主题，以逗号分隔，eg：2,3,4,5，如果无，可以不填
+		F. yn: 是否获取下一首信息，如果是：值为1，否则值为0或者不传
+		
+		传入参数注意：
+			A.此接口在调用时，每次调用都必须填写i值，即音频ID；
+			B.如果yn 为真，则表示获取下一首的信息，因此，专辑ID或者主题ID，必须存在一个；
+		
+	3.接口返回参数说明：
+		A.基本信息
+			item_id: 音频ID，
+			title: 音频名称，
+			icon: 音频的封面图片，
+			album_id: 音频所属的专辑ID，
+			subject_list: 音频所属的主题ID列表，
+			anchor: 音频主播，后台暂时没有录入的地方，暂为空，
+			from: 来自，后台暂时没有录入的地方，暂为空，
+			media: 音频链接地址
+		
+		B. comment ===> 评论的相关信息
+			count: 当前音频评论的数量，
+			data ===> 当前音频评论的具体内容
+				1 ===> 具体评论内容的ID
+					id: 评论ID，
+					user_id: 用户ID，
+					item_id: 音频ID，
+					content: 评论的内容，
+					replay_id: 如果存在的话，表示回复的某个评论的ID，
+					user_name: 用户的昵称，
+					user_mobile: 用户的手机号
+				
+				············ 
+		
+		C. enjoy ===> 喜欢的相关信息
+				count: 当前音频所有喜欢的数量，
+				self_enjoy: 当前用户自己是否已经喜欢，是，喜欢标红，不是，默认
