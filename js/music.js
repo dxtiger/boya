@@ -379,10 +379,12 @@ function Domready(fn) {
 
 // 播放器控制
 ;(function(window,document){
-	var box;
+	var box,main,h;
 	function init(){
 		box = document.querySelector('.music_box');
-		var h = document.documentElement.clientHeight;
+		main = document.querySelector('.main');
+		h = document.documentElement.clientHeight;
+		main.style.cssText += ';height:'+ ((h-box.offsetHeight)||h) +'px;'
 		return {
 			hide : hide,
 			show : show
@@ -391,11 +393,14 @@ function Domready(fn) {
 	function hide(){
 		box.classList.add('hide');
 		box.style.cssText = '';
+		main.style.cssText += ';height:100%;'
 	}
 	function show(t){
 		box.style.cssText = '';
 		box.classList.remove('on');
 		box.classList.remove('hide');
+		main.style.cssText += ';height:'+ ((h-box.offsetHeight)||h) +'px;'
+
 		if(t){ // t 显示满屏音乐
 			h = document.documentElement.clientHeight;
 			box.style.height = h + 'px';
@@ -436,8 +441,8 @@ function Music(){
 	P;
 	// 获取音乐
 	function getMusic(id,_yn,_a,_s){ // gid 音乐id， time从什么时间点开始播放， type 音乐来源，专辑or主题
-		var url = 'http://m.boyakids.cn/', // 获取音乐数据接口
-			//url = 'js/data.js', // 获取音乐数据接口
+		var //url = 'http://m.boyakids.cn/', // 获取音乐数据接口
+			url = 'js/data.js', // 获取音乐数据接口
 			req = Request();
 		item_id = id || item_id;
 		yn = _yn || yn;
@@ -476,6 +481,14 @@ function Music(){
 
 	// 渲染
 	function render(data){
+		if(!data.item_id){
+			if(P){
+				P.pause();
+			}
+			MContral.hide();
+			console.log('没有更新音频了')
+			return;
+		}
 		var history = localStorage.getItem('historyList') || '';
 		history = history.replace(data.item_id,'').replace(/\,{2,}/,',');
 		history += ','+data.item_id;
@@ -521,7 +534,9 @@ function Contrals(player){
 		next : document.querySelector('.btns .next'),
 		pre : document.querySelector('.btns .back'),
 		mini_play : document.querySelector('.info .play'),
-		mini_next : document.querySelector('.info .next')
+		mini_next : document.querySelector('.info .next'),
+		icon : document.querySelector('.big .icon'),
+		like : document.querySelector('.like')
 	},
 	state=false;
 
@@ -529,31 +544,37 @@ function Contrals(player){
 		objs.play.classList.add('stop');
 		objs.mini_play.classList.add('stop');
 		player.play();
-		state = false;
+		objs.icon.classList.add('on')
+		state = true;
 	}
 	function pause(){
 		objs.play.classList.remove('stop');
 		objs.mini_play.classList.remove('stop');
+		objs.icon.classList.remove('on')
 		player.pause();
-		state = true;
+		state = false;
 	}
 	function contral(e){
-
+		
+		e.stopPropagation&&e.stopPropagation();
+		e.preventDefault&&e.preventDefault();
+		
 		var load = player.isLoaded();
 		if(!load){
 			alert('音乐加载中,请稍后!');
 			return;
-		}else{
-			state = true;
 		}
 		if(state){
-			play();
+			pause();
 			return;
 		}
-		pause();
+		play();
 	}
 
-	player.ready(contral);
+	player.ready(function(){
+		state = true;
+		play();
+	});
 
 
 	function next(){
@@ -568,6 +589,12 @@ function Contrals(player){
 	objs.next.addEventListener('click',next,false);
 	objs.mini_next.addEventListener('click',next,false);
 	objs.pre.addEventListener('click',back,false);
+
+
+	function fav(){
+
+	}
+	objs.like.addEventListener('click',fav,false);
 
 
 }

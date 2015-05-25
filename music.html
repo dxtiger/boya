@@ -7,7 +7,7 @@
   <div class="info">
   	<span class="play"></span>
   	<span class="next"></span>
-  	<span class="name"><@= title @></span>
+  	<span class="name" onclick='MContral.show(1)'><@= title @></span>
   	<span class="icon"><img src="<@= icon @>"/></span>
   </div>
   </div>
@@ -16,7 +16,7 @@
   <div class="bg">
   	<img src="img/icon_music_bg.png"/>
   </div>
-  <a href="#" class="back"></a>
+  <a href="javascript:void(0)"  onclick='MContral.show()' class="back"></a>
   <a href="#" class="menu"></a>
   <div class="icon"><img src="<@= icon @>"/></div>
   <div class="player">

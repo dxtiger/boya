@@ -36,9 +36,6 @@ html, body {
   -webkit-user-select: none;
   user-select: none; }
 
-body {
-  padding: 0 0 2.66667rem; }
-
 .header {
   width: 100%;
   position: fixed;
