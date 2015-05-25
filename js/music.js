@@ -501,6 +501,9 @@ function Music(){
 		init();
 
 	}
+	function getId(){
+		return item_id;
+	}
 
 	// 初始化所有事件
 	function init(){
@@ -522,7 +525,8 @@ function Music(){
 		getMusic : getMusic,
 		getNextMusic : getNextMusic,
 		getPreMusic : getPreMusic,
-		render : render
+		render : render,
+		getId : getId
 	}
 
 }
@@ -538,13 +542,15 @@ function Contrals(player){
 		icon : document.querySelector('.big .icon'),
 		like : document.querySelector('.like')
 	},
+	timer,t=8000,current=0,
 	state=false;
 
 	function play(){
 		objs.play.classList.add('stop');
 		objs.mini_play.classList.add('stop');
 		player.play();
-		objs.icon.classList.add('on')
+		objs.icon.classList.add('on');
+
 		state = true;
 	}
 	function pause(){
@@ -591,6 +597,7 @@ function Contrals(player){
 	objs.pre.addEventListener('click',back,false);
 
 
+	// 喜欢事件
 	function fav(){
 
 	}
@@ -871,9 +878,12 @@ function Comments(){
 		if(!v || /^回复[^\:]*\: $/.test(v)){
 			return;
 		}
+		// 是否登录
+
 		// wait to 提交数据
 
 		// wait to 写入内容
+
 	}
 	function append(){
 		// 写入列表
