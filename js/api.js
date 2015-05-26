@@ -12,4 +12,5 @@ top.__M.getMusic(item_id,yn,a,s); // item_id : 音频id， yn是否一下首， 
 top.__M.getId(); // 获取当前音乐item_id；
 
 
+
 */
