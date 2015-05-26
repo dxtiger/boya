@@ -415,6 +415,52 @@ function Domready(fn) {
 })(window,document);
 
 /*
+ * Cookie
+ */
+var Cookie={
+	read:function(name){
+		var value = document.cookie.match('(?:^|;)\\s*' + name + '=([^;]*)');
+		return (value) ? decodeURIComponent(value[1]) : null;
+	},
+	write:function(value){
+		var str = value.name + '=' + encodeURIComponent(value.value);
+			if(value.domain){ str += '; domain=' + value.domain;}
+			str += '; path=' + (value.path || '/');
+			if(value.day){
+				var time = new Date();
+				time.setTime(time.getTime()+value.day*24*60*60*1000);
+				str += '; expires=' + time.toGMTString();
+			}
+		document.cookie = str;
+		return;
+	},
+	dispose:function(name,options){
+		var opt = options || {};
+		opt.name = name;
+		opt.day = -1;
+		opt.value = 'a';
+		this.write(opt);
+		return;
+	}
+}
+
+
+function UserInfo(){
+	var info,
+		coo = Cookie.read('BOYA_USER');
+	if(coo){
+		coo = coo.split(',');
+		info = {};
+		for(var i=0,l=coo.length;i<l;i++){
+			var k = coo[i].split(':');
+			info[k[0]] = k[1]
+		}
+		return info;
+	}
+	return null;
+}
+
+/*
 music = {
 	item_id: '音频ID',
 	title: '音频名称',
@@ -474,8 +520,13 @@ function Music(){
 	function getPreMusic(){
 		var id = localStorage.getItem('historyList'),
 			id = id.split(',');
+		if(id.length <= 1){
+			console.log('没有上一首了');
+			return;
+		}
 		id.length-=1;
 		id = id[id.length-1];
+
 		getMusic(id,null,null,null);
 	}
 
@@ -542,7 +593,7 @@ function Contrals(player){
 		icon : document.querySelector('.big .icon'),
 		like : document.querySelector('.like')
 	},
-	timer,t=8000,current=0,
+	timer,t=8000,current=0,req = Request(),
 	state=false;
 
 	function play(){
@@ -599,7 +650,27 @@ function Contrals(player){
 
 	// 喜欢事件
 	function fav(){
-
+		// 是否登录
+		var isLogin = UserInfo();
+		if(!isLogin){
+			console.log('还未登陆');
+			document.querySelector('iframe').src = URL.login;
+			return;
+		}
+		// 是否已喜欢
+		var state = objs.like.classList.contains('on') ? 1 : 0;
+		// 发送数据
+		// wait to do ****************************************************************************
+		var data = '';
+		data += '?uid='+isLogin.uid;
+		data += '&';
+		req.jsonp({
+			url : URL.fav + data,
+			success : function(){}
+		})
+		objs.like.classList.toggle('on');
+		var span = objs.like.querySelector('span');
+		span.innerHTML = (parseInt(span.innerHTML) + (state?-1:1) ) + '人喜欢';
 	}
 	objs.like.addEventListener('click',fav,false);
 
@@ -839,7 +910,8 @@ function Comments(){
 		back = layer.querySelector('.back span'),
 		input = layer.querySelector('input[type=text]'),
 		addBox = layer.querySelector('.add'),
-		submit = layer.querySelector('.add div');
+		submit = layer.querySelector('.add div'),
+		req = Request();
 
 	function handler(){
 		btn.addEventListener('click',show,false);
@@ -865,6 +937,8 @@ function Comments(){
 		if(!tar) return;
 		var name = tar.getAttribute('data-name');
 		input.value = '回复 '+name+': ';
+		input.setAttribute('reply_id',tar.getAttribute('data-id'));
+		input.setAttribute('reply_name',name);
 	}
 	function find(t){
 		if(!t) return null;
@@ -879,15 +953,31 @@ function Comments(){
 			return;
 		}
 		// 是否登录
-
+		var isLogin = UserInfo();
+		if(!isLogin){
+			alert('还未登陆')
+			return;
+		}
 		// wait to 提交数据
-
-		// wait to 写入内容
-
+		var isreply = v.indexOf(input.getAttribute('data-name')) > -1 ? 1 : 0;
+		var data = '?user_id='+isLogin.uid + '&item_id='+ __M.getId() + '&content='+encodeURIComponent(v)+'&reply_id='+isreply;
+		req.jsonp({
+			url : URL.addComment + data,
+			success : function(){}
+		})
+		append(isLogin,v)
 	}
-	function append(){
-		// 写入列表
-		// user信息从 cookie中读取
+			
+	function append(info,con){
+		var div = document.createElement('div');
+		div.className = 'item';
+		div.setAttribute('data-name',isLogin.nickname);
+		div.setAttribute('data-id',isLogin.uid);
+		var t = new Date(),
+			h = t.getHours(),
+			m = t.getMinutes();
+		div.innerHTML = '<div class="c_icon"><img src="'+isLogin.headimgurl+'"/></div><div class="info"><span>今天 '+h+':'+m+'</span><h1>'+isLogin.nickname+'</h1><p>'+v+'</p></div>';
+		document.querySelector('.comments .list').appendChild(div);
 	}
 
 	function distory(){
