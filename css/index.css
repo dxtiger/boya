@@ -453,7 +453,8 @@ html, body {
       position: absolute;
       display: block;
       right: 0.66667rem;
-      top: 0.88889rem; }
+      top: 50%;
+      margin-top: -0.37778rem; }
   .content .album_list .list .item {
     border-left: 0.17778rem solid #fff;
     height: 1.77778rem;
