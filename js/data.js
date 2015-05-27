@@ -11,7 +11,7 @@ var data = {
 		count : 1000,
 		self_enjoy : false
 	},
-	comments : {
+	comment : {
 		count : 4,
 		data : [
 			{
@@ -53,4 +53,4 @@ var data = {
 		]
 	}
 }
-callbackFn(data)
+callbackFn({'ok':true,'msg':data})

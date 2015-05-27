@@ -67,12 +67,12 @@
   <div class="back"><span></span></div>
   <div class="list">
   <@ for(var i=0,l=comments.data.length;i<l;i++){ @>
-  	<div class="item" data-name='<@= comments.data[i].user_name @>' data-id="<@= comments.data[i].user_id @>">
+  	<div class="item" data-name='<@= comment.data[i].user_name @>' data-id="<@= comment.data[i].user_id @>">
   		<div class="c_icon"><img src="img/100.png"/></div>
   		<div class="info">
   			<span>今天 18:00</span>
-  			<h1><@= comments.data[i].user_name @></h1>
-  			<p><@= comments.data[i].content @></p>
+  			<h1><@= comment.data[i].user_name @></h1>
+  			<p><@= comment.data[i].content @></p>
   		</div>
   	</div>
   <@ } @>
@@ -91,15 +91,16 @@
 <script>
   MContral(); // 播放器
   Domready(function(){
+  
   	MContral.hide();
+  	var __M = Music();
+  
+  
+  	// 测试用，播放音乐,上线请注释以下方法
+  	__M.getMusic('23',1,null,null); // item_id , yn,a,s
+  	callbackFn = function(data){
+  		MContral.show();
+  		__M.render(data.msg);
+  	}
   })
-  
-  var __M = Music();
-  
-  
-  // 测试用，播放音乐,上线请注释一下方法
-  __M.getMusic('23',1,null,null); // item_id , yn,a,s
-  callbackFn = function(data){
-  	__M.render(data);
-  }
 </script>
