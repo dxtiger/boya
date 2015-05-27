@@ -44,7 +44,7 @@
       <div></div><span><@ enjoy.count @>人喜欢</span>
       </div>
       <div class="name">
-      <h1><@= title @></h1><span>主播：<@= anchor @></span><span>来自：<@= from @></span>
+      <h1><@= decodeURIComponent(title) @></h1><span>主播：<@= anchor @></span><span>来自：<@= from @></span>
       </div>
       <div class="progress"><span class="start"></span>
       <div class="prog">
@@ -56,7 +56,7 @@
       </div>
       <div class="others">
       <div class="clock"></div>
-      <div class="comment"><span><@= comments.count ? '('+ comments.count +')' : '' @></span></div>
+      <div class="comment"><span><@= comment.count ? '('+ comment.count +')' : '' @></span></div>
       <div class="share"></div>
       </div>
       </div>
