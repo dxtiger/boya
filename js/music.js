@@ -487,8 +487,8 @@ function Music(){
 	P;
 	// 获取音乐
 	function getMusic(id,_yn,_a,_s){ // gid 音乐id， time从什么时间点开始播放， type 音乐来源，专辑or主题
-		var //url = 'http://m.boyakids.cn/', // 获取音乐数据接口
-			url = 'js/data.js', // 获取音乐数据接口
+		var url = 'http://m.boyakids.cn/', // 获取音乐数据接口
+			//url = 'js/data.js', // 获取音乐数据接口
 			req = Request();
 		item_id = id || item_id;
 		yn = _yn || yn;
@@ -502,11 +502,13 @@ function Music(){
 				i : item_id,
 				a : a,
 				yn : yn,
-				s : s,
-				jsonpName : 'callbackFn'
+				s : s
 			},
 			success : function(data){
-				render(data);
+				if(data.ok){
+					render(data.msg);
+				}
+				alert('音频加载失败了，稍后在试试吧')
 			}
 		})
 
