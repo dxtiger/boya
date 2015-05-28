@@ -506,7 +506,7 @@ function Music(){
 	a=0,s=0,
 	P;
 	// 获取音乐
-	function getMusic(id,_yn,_a,_s){ // gid 音乐id， time从什么时间点开始播放， type 音乐来源，专辑or主题
+	function getMusic(id,_yn,_a,_s,n){ // gid 音乐id， time从什么时间点开始播放， type 音乐来源，专辑or主题
 		var url = 'http://m.boyakids.cn/', // 获取音乐数据接口
 			//url = 'js/data.js', // 获取音乐数据接口
 			req = Request();
@@ -529,9 +529,15 @@ function Music(){
 				if(data.ok){
 					console.log(data.msg);
 					data.msg.title = decodeURIComponent(data.msg.title);
-					var n = MContral.state() == 2 ? 1 : 0;
+					if(n || n==0 || MContral.state() == 1){
+						n = 0;
+					}else{
+						n = 1;
+					}
 					MContral.show(n);
 					item_id = data.msg.item_id;
+					a = data.msg.album_id;
+					s = data.msg.subject_list
 					render(data.msg);
 					return;
 				}else{
@@ -544,8 +550,8 @@ function Music(){
 	
 
 	// 下一首
-	function getNextMusic(id,_yn,_a,_s){ // 当前音乐gid，type音乐来源
-		getMusic(id,_yn,_a,_s);
+	function getNextMusic(id,_yn,_a,_s,n){ // 当前音乐gid，type音乐来源
+		getMusic(id,_yn,_a,_s,n);
 	}
 	// 上一首
 	function getPreMusic(){
@@ -605,7 +611,9 @@ function Music(){
 		// 音乐播放
 		P = Player();
 		P.play();
-		P.end(getNextMusic);
+		P.end(function(){
+			getNextMusic(item_id,1,a,s)
+		});
 		// 收听统计 *******************************************************************
 
 		MusicCount({
@@ -690,7 +698,12 @@ function Contrals(player){
 		var tar = e.target;
 		var v = tar.getAttribute('data-v');
 		v = v.split(',');
-		__M.getNextMusic(v[0],1,v[1],v[2]);
+		if(tar.parentNode.className == 'btns'){
+			__M.getNextMusic(v[0],1,v[1],v[2]);
+		}else{
+			__M.getNextMusic(v[0],1,v[1],v[2],0);
+		}
+		
 	}
 	function back(){
 		__M.getPreMusic();
@@ -961,6 +974,7 @@ function AutoClose(video){
 		video&&video.pause();
 		clear();
 		btn.classList.remove('on');
+		MContral.hide();
 		// 时间设置为一次性功能，使用后，自动切换会 不设置选项
 		localStorage.setItem('autoCloseSet',0);
 		localStorage.removeItem('startTime');
