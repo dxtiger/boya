@@ -7,8 +7,18 @@
     <script src="js/music.js"></script>
   </head>
   <body>
+    <div class="header">
+      <ul>
+        <li><a href="/?_c=index&amp;_a=today" target="frame" class="active">今天</a></li>
+        <li><a href="/?_c=subject&amp;_a=index" target="frame">主题</a></li>
+        <li><a href="/?_c=channel&amp;_a=index" target="frame">频道</a></li>
+        <li><a href="/?_c=search&amp;_a=index" target="frame">我的</a></li>
+        <li><a href="/?_c=search&amp;_a=index" target="frame"></a></li>
+      </ul><a href="javascript:history.back()" target="frame" class="back hide"></a>
+    </div>
+    <div class="header header_login hide"><a href="javascript:history.back()" target="frame" class="close"></a></div>
     <div class="main">
-      <iframe src="main.html" frameborder="0" class="frame"></iframe>
+      <iframe src="main.html" frameborder="0" name="frame" class="frame"></iframe>
     </div>
     <div class="music_box"></div>
     <script>

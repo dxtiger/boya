@@ -117,7 +117,7 @@ html, body {
   z-index: 1;
   max-width: 16rem;
   margin: 0 auto;
-  padding: 2.22222rem 0 0; }
+  padding: 0; }
   .content .scroll {
     width: 100%; }
     .content .scroll .wrapper {

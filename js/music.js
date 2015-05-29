@@ -375,7 +375,41 @@ function Domready(fn) {
 	}
 }
 
+function setFrame(h){
+	document.querySelector('.main').style.height = h + 'px';
+}
+function setHeader(t){
+	var header = document.querySelector('.header'),
+		t1 = header.querySelector('ul'),
+		lis = header.querySelectorAll('a'),
+		t2 = header.querySelector('.back'),
+		t3 = document.querySelector('.header_login');
 
+	t1.classList.add('hide');
+	t2.classList.add('hide');
+	t3.classList.add('hide');
+	var obj = [t1,t2,t3];
+	obj[t||0].classList.remove('hide');
+}
+function headerContral(){
+	var ul = document.querySelector('.header ul'),
+		lis = ul.querySelectorAll('a');
+	ul.addEventListener('click',function(e){
+		var tar = e.target;
+		if(tar.nodeName == 'A'){
+			clear(tar);
+		}
+	},false);
+	function clear(tar){
+		for(var i=0,l=lis.length;i<l;i++){
+			lis[i].classList.remove('active');
+		}
+		tar.classList.add('active')
+	}
+}
+Domready(function(){
+	headerContral();
+})
 
 // 播放器控制
 ;(function(window,document){
@@ -384,7 +418,7 @@ function Domready(fn) {
 		box = document.querySelector('.music_box');
 		main = document.querySelector('.main');
 		h = document.documentElement.clientHeight;
-		main.style.cssText += ';height:'+ ((h-box.offsetHeight)||h) +'px;'
+		//main.style.cssText += ';height:'+ ((h-box.offsetHeight)||h) +'px;'
 		return {
 			hide : hide,
 			show : show,
@@ -394,18 +428,21 @@ function Domready(fn) {
 	function hide(){
 		box.classList.add('hide');
 		box.style.cssText = '';
-		main.style.cssText += ';height:100%;';
+		//main.style.cssText += ';height:100%;';
 		state = 0;
 	}
 	function show(t){
+		h = document.documentElement.clientHeight;
 		box.style.cssText = '';
-		box.classList.remove('on');
 		box.classList.remove('hide');
-		main.style.cssText += ';height:'+ ((h-box.offsetHeight)||h) +'px;'
+		box.classList.remove('on');
+		setTimeout(function(){
+			//main.style.cssText += ';height:'+ ((h-box.offsetHeight)||h) +'px;'
+		},500)
 		state = 1;
 		if(t){ // t 显示满屏音乐
 			h = document.documentElement.clientHeight;
-			box.style.height = h + 'px';
+			//box.style.height = h + 'px';
 			box.classList.add('on');
 			state = 2;
 		}
@@ -453,7 +490,7 @@ var Cookie={
 
 function UserInfo(){
 	var info,
-		coo = Cookie.read('BOYA_USER');
+		coo = Cookie.read('BKV2BOYA_USER');
 	if(coo){
 		coo = coo.split(',');
 		info = {};
@@ -499,7 +536,7 @@ music = {
 */
 
 function Music(){
-	var temp = '<!-- 底部mini播放器--><div class="mini"><div style="width:0" class="progress"></div><div class="info"><span class="play"></span><span data-v="<@= item_id @>,<@= album_id @>,<@= subject_list @>" class="next"></span><span class="name" onclick=\'MContral.show(1)\'><@= title @></span><span class="icon"><img src="<@= icon @>"/></span></div></div><!-- 满屏播放器--><div class="big"><div class="bg"><img src="img/icon_music_bg.png"/></div><a href="javascript:void(0)"  onclick=\'MContral.show()\' class="back"></a><a href="#" class="menu"></a><div class="icon"><img src="<@= icon @>"/></div><div class="player"><div class="like <@ enjoy.self_enjoy?\'on\':\'\' @>"><div data-id="<@= item_id @>"></div><span><@= (enjoy.count||0) @>人喜欢</span></div><div class="name"><h1><@= title @></h1><span>主播：<@= anchor @></span><span>来自：<@= from @></span></div><div class="progress"><span class="start"></span><div class="prog"><div style="width:0"></div><span style="left:0" data-max=\'94\'></span></div><span class="end"></span></div><div class="btns"><span class="back"></span><span class="play"></span><span class="next" data-v="<@= item_id @>,<@= album_id @>,<@= subject_list @>"></span></div><div class="others"><div class="clock"></div><div class="comment"><span><@= comment.count ? \'(\'+ comment.count +\')\' : \'\' @></span></div><div class="share"></div></div></div><div class="setTime"><div class="con"><div class="title">设置时间</div><ul><li data-time=0>不设置</li><li data-time=1>当前音频播放完毕后关闭</li><li data-time=2>10分钟后关闭</li><li data-time=3>20分钟后关闭</li><li data-time=4>30分钟后关闭</li></ul></div></div><!-- comment--><div class="comments"><div class="back"><span></span></div><div class="list"><@ for(var i=0,l=comment.data.length;i<l;i++){ @><div class="item" data-name=\'<@= comment.data[i].user_name @>\' data-id="<@= comment.data[i].user_id @>"><div class="c_icon"><img src="img/100.png"/></div><div class="info"><span>今天 18:00</span><h1><@= comment.data[i].user_name @></h1><p><@= comment.data[i].content @></p></div></div><@ } @></div><div class="add"><input type="text" placeholder="输入评论"/><div>发表</div></div></div></div><!-- audio--><audio id="music_audio" src="<@= media @>" autoplay=\'autoplay\'></audio>',
+	var temp = '<!-- 底部mini播放器--><div class="mini"><div style="width:0" class="progress"></div><div class="info"><span class="play"></span><span data-v="<@= item_id @>,<@= album_id @>,<@= subject_list @>" class="next"></span><span class="name" onclick=\'MContral.show(1)\'><@= title @></span><span class="icon"><img src="<@= icon @>"/></span></div></div><!-- 满屏播放器--><div class="big"><div class="bg"><img src="img/icon_music_bg.png"/></div><a href="javascript:void(0)"  onclick=\'MContral.show()\' class="back"></a><a href="http://m.boyakids.cn/?_c=album&_a=viewAlbum&albumId=<@= album_id @>" onclick="MContral.show()" class="menu" target="frame"></a><div class="icon"><img src="<@= icon @>"/></div><div class="player"><div class="like <@ enjoy.self_enjoy?\'on\':\'\' @>"><div data-id="<@= item_id @>"></div><span><@= (enjoy.count||0) @>人喜欢</span></div><div class="name"><h1><@= title @></h1><span>主播：<@= anchor @></span><span>来自：<@= from @></span></div><div class="progress"><span class="start"></span><div class="prog"><div style="width:0"></div><span style="left:0" data-max=\'94\'></span></div><span class="end"></span></div><div class="btns"><span class="back"></span><span class="play"></span><span class="next" data-v="<@= item_id @>,<@= album_id @>,<@= subject_list @>"></span></div><div class="others"><div class="clock"></div><div class="comment"><span><@= comment.count ? \'(\'+ comment.count +\')\' : \'\' @></span></div><div class="share"></div></div></div><div class="setTime"><div class="con"><div class="title">设置时间</div><ul><li data-time=0>不设置</li><li data-time=1>当前音频播放完毕后关闭</li><li data-time=2>10分钟后关闭</li><li data-time=3>20分钟后关闭</li><li data-time=4>30分钟后关闭</li></ul></div></div><!-- comment--><div class="comments"><div class="back"><span></span></div><div class="list"><@ for(var i=0,l=comment.data.length;i<l;i++){ @><div class="item" data-name=\'<@= comment.data[i].user_name @>\' data-id="<@= comment.data[i].user_id @>"><div class="c_icon"><img src="img/100.png"/></div><div class="info"><span>今天 18:00</span><h1><@= comment.data[i].user_name @></h1><p><@= comment.data[i].content @></p></div></div><@ } @></div><div class="add"><input type="text" placeholder="输入评论"/><div>发表</div></div></div></div><!-- audio--><audio id="music_audio" src="<@= media @>" autoplay=\'autoplay\'></audio>',
 	box = document.querySelector('.music_box'),
 	te= TE(),
 	yn = 0,item_id=0,
@@ -534,7 +571,7 @@ function Music(){
 					}else{
 						n = 1;
 					}
-					MContral.show(n);
+					MContral.show(1);
 					item_id = data.msg.item_id;
 					a = data.msg.album_id;
 					s = data.msg.subject_list
@@ -750,24 +787,88 @@ function Contrals(player){
 
 }
 
+function getPosition(obj){
+	var o = typeof obj === 'string' ? document.querySelector(obj) : obj,
+		x=0,
+		y=0;
+	while(o){
+		x+=o.offsetLeft;
+		y+=o.offsetTop;
+		o = o.offsetParent;
+	}
+	return {x:x,y:y}
+}
 // 进度管理
 function Progress(player){
 	var objs = {
 		mini : document.querySelector('.mini .progress'),
+		prog : document.querySelector('.prog'),
 		line : document.querySelector('.prog div'),
 		point : document.querySelector('.prog span'),
 		currentTime : document.querySelector('.progress .start'),
 		endTime : document.querySelector('.progress .end')
-	};
+	},
+	current=0 , x, fix,
+	ended=1,now,
+	pos = getPosition(objs.prog),
+	max = objs.prog.offsetWidth;
 
 	function run(c,end){
-		objs.mini.style.width = (c/end)*100 + '%';
-		objs.line.style.width = (c/end)*100 + '%';
-		objs.point.style.left = (c/end)*94 + '%';
+		ended = end;
+		current = c;
+		set(c,end);
 		objs.currentTime.innerHTML = Math.floor(c/60) + ':' + parseInt(c%60);
 		objs.endTime.innerHTML = Math.floor(end/60) + ':' + parseInt(end%60);
 	}
+	function set(c,end){
+		objs.mini.style.width = (c/end)*100 + '%';
+		objs.line.style.width = (c/end)*100 + '%';
+		objs.point.style.left = (c/end)*94 + '%';
+	}
 
+
+	function handerEvent(e){
+		switch(e.type){
+			case "touchstart" : 
+				_start(e);
+				break;
+			case 'touchmove' : 
+				move(e);
+				break;
+			case 'touchend' : 
+				setTimeout(end(e),1);
+				break;
+		}
+	}
+	function _start(e){
+		if(e.touches.length == 1){
+			var tar = e.target;
+			x = e.touches[0].clientX;
+			player.pause();
+			objs.prog.addEventListener('touchmove',handerEvent,false);
+			objs.prog.addEventListener('touchend',handerEvent,false);
+		}
+	}
+	function end(e){
+		objs.prog.removeEventListener('touchmove',handerEvent,false);
+		objs.prog.removeEventListener('touchend',handerEvent,false);
+		player.setProgress(now);
+		player.play();
+	}
+	function move(e){
+		if(e.touches.length == 1){
+			var _x = e.touches[0].clientX;
+			fix = _x - x;
+			now = (current/ended) + (fix/max);
+			now = Math.min( Math.max(0,now) , 1 );
+
+			set(now*max,max);
+		}
+		e.preventDefault();
+		e.stopPropagation();
+	}
+
+	objs.prog.addEventListener('touchstart',handerEvent,false);
 	player.ready(function(end){
 		objs.endTime.innerHTML = Math.floor(end/60) + ':' + parseInt(end%60);
 	})
@@ -848,7 +949,7 @@ function Player(){
 	function setProgress(n){
 		// n 秒数
 		if( (!n&&n!=0) || !loaded) return;
-		video.currentTime = Math.min(n*1,duration);
+		video.currentTime = Math.min(n,1)*duration;
 	}
 	function getState(){
 		return state;

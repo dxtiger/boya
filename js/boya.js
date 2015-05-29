@@ -76,3 +76,9 @@ function Domready(fn) {
 		win[add](pre + 'load', init, false);
 	}
 }
+
+
+
+Domready(function(){
+	top.setFrame(document.body.clientHeight);
+})

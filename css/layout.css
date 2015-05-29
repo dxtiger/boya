@@ -38,11 +38,11 @@ html, body {
 
 .main {
   width: 100%;
-  height: 100%;
   -webkit-overflow-scrolling: touch;
   overflow-scrolling: touch;
   overflow-y: scroll;
-  overflow-x: hidden; }
+  overflow-x: hidden;
+  padding: 2.22222rem 0 2.6rem; }
   .main iframe {
     width: 100%;
     height: 100%;
@@ -52,11 +52,12 @@ html, body {
 .music_box {
   width: 100%;
   height: 2.6rem;
-  position: absolute;
+  position: fixed;
   bottom: 0;
   left: 0;
   background: #fff;
   -webkit-transition: all .3s ease-in-out;
+  z-index: 11;
   -webkit-transform: translate3d(0, 0, 0); }
   .music_box.on {
     height: 100%; }
@@ -478,7 +479,62 @@ html, body {
   100% {
     -webkit-transform: rotateZ(360deg) scale3d(1, 1, 1); } }
 
-html, body {
-  height: 100%;
-  position: relative;
-  overflow: hidden; }
+.header {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  height: 2.22222rem;
+  background: #148174;
+  color: #fff; }
+  .header.header_login {
+    height: 3.33333rem;
+    background: #fff;
+    border-bottom: 2px solid #efeeee; }
+    .header.header_login .close {
+      margin: 1.11111rem 0 0 0.66667rem; }
+  .header .back, .header .close {
+    width: 1.06667rem;
+    height: 1.06667rem;
+    display: block;
+    color: #fff;
+    background: url(../img/icon_back.png) no-repeat center;
+    background-size: auto 100%;
+    margin: 0.55556rem 0 0 0.33333rem; }
+  .header .close {
+    background: url(../img/icon_close.png) no-repeat center;
+    background-size: auto 100%; }
+  .header.back ul {
+    display: none; }
+  .header.back .close, .header.back .back {
+    display: block; }
+  .header.hide, .header .hide {
+    display: none; }
+  .header ul {
+    width: 95%;
+    margin: 0 auto;
+    height: 100%; }
+    .header ul li {
+      width: 2.8rem;
+      display: inline-block;
+      height: 100%;
+      position: relative; }
+      .header ul li:last-child a {
+        background: url(../img/icon_search.png) no-repeat center center;
+        background-size: auto 100%;
+        height: 1.6rem;
+        border: 0; }
+    .header ul a {
+      display: block;
+      width: 2.71111rem;
+      font-size: 0.8rem;
+      color: #fff;
+      text-align: center;
+      position: absolute;
+      bottom: 0;
+      padding: 0 0 0.44444rem;
+      border-bottom: 3px solid #148174; }
+      .header ul a.active {
+        border-bottom: 3px solid #26ceba;
+        padding: 0 0 0.44444rem; }
