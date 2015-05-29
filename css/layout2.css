@@ -1,0 +1,540 @@
+/* reset */
+html, body, div, h1, h2, h3, h4, h5, h6, p, img, dl, dt, dd, ol, ul, li, form, table, tr, th, td {
+  margin: 0;
+  padding: 0;
+  border: 0; }
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: normal; }
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0; }
+
+img {
+  border: 0; }
+
+ol, ul {
+  list-style: none; }
+
+i, b, em, strong {
+  font-style: normal;
+  text-decoration: none;
+  font-weight: normal; }
+
+body {
+  font-family: 'Hiragino Sans GB','Lucida Grande','Lucida Sans Unicode','Microsoft YaHei','simsun'; }
+
+html, body {
+  background: #fff; }
+
+a, img {
+  -webkit-touch-callout: none;
+  text-decoration: none; }
+
+html, body {
+  -webkit-user-select: none;
+  user-select: none; }
+
+.main {
+  width: 100%;
+  -webkit-overflow-scrolling: touch;
+  overflow-scrolling: touch;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  padding: 2.22222rem 0 2.6rem; }
+  .main iframe {
+    width: 100%;
+    height: 100%;
+    -webkit-overflow-scrolling: touch;
+    overflow-scrolling: touch; }
+
+.music_box {
+  width: 100%;
+  height: 2.6rem;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  background: #fff;
+  -webkit-transition: all .3s ease-in-out;
+  z-index: 11;
+  -webkit-transform: translate3d(0, 0, 0); }
+  .music_box.on {
+    height: 100%; }
+    .music_box.on .mini {
+      display: none; }
+    .music_box.on .big {
+      display: block; }
+  .music_box.hide {
+    -webkit-transform: translate3d(0, 100%, 0); }
+  .music_box .mini {
+    width: 100%;
+    height: 2.6rem;
+    background: #9c968e;
+    z-index: 10; }
+    .music_box .mini .progress {
+      height: 3px;
+      position: absolute;
+      left: 0;
+      top: -2px;
+      z-index: 3;
+      background: #25ccb8;
+      -webkit-transition: all .3s ease-in-out;
+      transition: all .3s ease-in-out; }
+    .music_box .mini .info {
+      width: 100%;
+      height: 100%;
+      line-height: 100%; }
+    .music_box .mini span {
+      display: block;
+      overflow: hidden; }
+      .music_box .mini span.stop, .music_box .mini span.play, .music_box .mini span.next, .music_box .mini span.icon {
+        width: 2.6rem;
+        height: 2.6rem;
+        -webkit-box-flex: 1;
+        box-flex: 1; }
+      .music_box .mini span.play {
+        background: url(../img/icon_play.png) no-repeat center;
+        background-size: auto 100%;
+        float: left; }
+      .music_box .mini span.stop {
+        background: url(../img/icon_stop.png) no-repeat center;
+        background-size: auto 100%;
+        float: left; }
+      .music_box .mini span.name {
+        width: 7.33333rem;
+        margin: 0 0.22222rem 0 0;
+        float: left;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        height: 2.6rem;
+        color: #fff;
+        font-size: 0.8rem;
+        line-height: 2.6rem; }
+      .music_box .mini span.next {
+        background: url(../img/icon_next.png) no-repeat center;
+        background-size: auto 100%;
+        float: left; }
+      .music_box .mini span.icon {
+        margin: 0.28889rem 0.44444rem 0 0;
+        overflow: hidden;
+        width: 2rem;
+        height: 2rem;
+        float: right;
+        border-radius: 50%;
+        border: 2px solid #25ccb8; }
+        .music_box .mini span.icon img {
+          width: 100%; }
+  .music_box .big {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    display: none; }
+    .music_box .big .bg {
+      width: 100%; }
+      .music_box .big .bg img {
+        width: 100%; }
+    .music_box .big a.back {
+      width: 1.33333rem;
+      height: 1.33333rem;
+      border-radius: 50%;
+      position: absolute;
+      background: url(../img/icon_back.png) no-repeat 45% center rgba(0, 0, 0, 0.7);
+      background-size: auto 60%;
+      left: 0.66667rem;
+      top: 0.44444rem; }
+    .music_box .big a.menu {
+      width: 1.33333rem;
+      height: 1.33333rem;
+      border-radius: 50%;
+      position: absolute;
+      background: url(../img/icon_music_menu.png) no-repeat center rgba(0, 0, 0, 0.7);
+      background-size: auto 50%;
+      right: 0.66667rem;
+      top: 0.44444rem; }
+    .music_box .big .player {
+      height: 12rem;
+      width: 100%;
+      background: #fff;
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      z-index: 3; }
+    .music_box .big .like {
+      position: absolute;
+      width: 4.88889rem;
+      right: 0;
+      top: -1.11111rem; }
+      .music_box .big .like div {
+        background: url(../img/icon_music_like.png) no-repeat 55% center #dfdfdf;
+        width: 1.88889rem;
+        height: 1.88889rem;
+        border-radius: 50%;
+        border: 4px solid #fff;
+        background-size: 50% auto;
+        margin: 0 auto 0.22222rem; }
+      .music_box .big .like.on div {
+        background: url(../img/icon_music_like_2.png) no-repeat 55% center #f63f3f; }
+      .music_box .big .like span {
+        font-size: 0.48889rem;
+        color: #9c968e;
+        text-align: center;
+        display: block; }
+    .music_box .big .icon {
+      width: 6.88889rem;
+      height: 6.88889rem;
+      border-radius: 50%;
+      border: 4px solid #fff;
+      overflow: hidden;
+      position: absolute;
+      left: 50%;
+      margin: 0 0 0 -3.44444rem;
+      bottom: 9.77778rem;
+      z-index: 2; }
+      .music_box .big .icon.on {
+        -webkit-animation: music_icon 8s infinite linear; }
+      .music_box .big .icon img {
+        width: 100%; }
+    .music_box .big .name {
+      padding: 0.77778rem 0 0;
+      text-align: center; }
+      .music_box .big .name h1 {
+        color: #3a3a3a;
+        font-size: 0.8rem;
+        line-height: 1rem;
+        margin: 0 auto 0.22222rem;
+        width: 8rem;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis; }
+      .music_box .big .name span {
+        display: block;
+        color: #9c968e;
+        font-size: 0.62222rem;
+        line-height: 0.8rem; }
+    .music_box .big .progress {
+      padding: 0.66667rem 0 0;
+      position: relative; }
+      .music_box .big .progress .prog {
+        width: 11.11111rem;
+        height: 0.22222rem;
+        background: #d5d5d5;
+        margin: 0.48889rem auto 0;
+        position: relative; }
+        .music_box .big .progress .prog div {
+          height: 100%;
+          background: #148174;
+          position: absolute;
+          left: 0;
+          top: 0; }
+        .music_box .big .progress .prog span {
+          width: 0.77778rem;
+          height: 0.77778rem;
+          border-radius: 50%;
+          display: block;
+          background: #148174;
+          position: absolute;
+          left: 0;
+          top: -0.26667rem; }
+      .music_box .big .progress .start, .music_box .big .progress .end {
+        display: block;
+        position: absolute;
+        font-size: 0.53333rem;
+        color: #b9b9b9;
+        top: 0.88889rem;
+        width: 2.22222rem; }
+      .music_box .big .progress .start {
+        left: 0rem;
+        text-align: right; }
+      .music_box .big .progress .end {
+        right: 0rem; }
+    .music_box .big .btns {
+      padding: 1.02222rem 0 0;
+      position: relative;
+      height: 3.46667rem; }
+      .music_box .big .btns span {
+        display: block;
+        border-radius: 50%;
+        position: absolute;
+        border: 4px solid #148174; }
+      .music_box .big .btns .back, .music_box .big .btns .next {
+        width: 1.77778rem;
+        height: 1.77778rem;
+        background: url(../img/icon_music_back.png) no-repeat center;
+        background-size: auto 60%;
+        top: 1.33333rem; }
+      .music_box .big .btns .back {
+        left: 3.22222rem; }
+      .music_box .big .btns .next {
+        -webkit-transform: rotateZ(180deg);
+        right: 3.22222rem;
+        transform: rotateZ(180deg); }
+      .music_box .big .btns .play {
+        width: 2.33333rem;
+        height: 2.33333rem;
+        background: url(../img/icon_music_play.png) no-repeat 60% center;
+        background-size: auto 60%;
+        top: 1.02222rem;
+        left: 50%;
+        margin-left: -1.15556rem; }
+      .music_box .big .btns .stop {
+        width: 2.33333rem;
+        height: 2.33333rem;
+        background: url(../img/icon_music_stop.png) no-repeat center;
+        background-size: auto 60%;
+        top: 1.02222rem;
+        left: 50%;
+        margin-left: -1.15556rem; }
+    .music_box .big .others {
+      width: 14.66667rem;
+      margin: 0 auto;
+      border-top: 2px solid #d2d2d2;
+      height: 2.22222rem;
+      position: relative; }
+      .music_box .big .others div {
+        position: absolute;
+        width: 4.88889rem;
+        height: 2.22222rem;
+        top: 0; }
+      .music_box .big .others .clock {
+        background: url(../img/icon_music_clock.png) no-repeat 0.88889rem center;
+        background-size: auto 42%;
+        left: 0; }
+        .music_box .big .others .clock.on {
+          background: url(../img/icon_music_clock.png) no-repeat 0.88889rem center, url(../img/icon_music_clock2.png) no-repeat 1.44444rem 1.33333rem;
+          background-size: auto 42%, auto 21%; }
+      .music_box .big .others .comment {
+        background: url(../img/icon_music_comment.png) no-repeat center;
+        background-size: auto 41%;
+        left: 4.88889rem; }
+        .music_box .big .others .comment span {
+          color: #25ccb8;
+          position: absolute;
+          left: 63%;
+          top: 0.66667rem;
+          font-size: 0.44444rem; }
+      .music_box .big .others .share {
+        background: url(../img/icon_music_share.png) no-repeat center;
+        background-size: auto 42%;
+        right: 0; }
+    .music_box .big .setTime, .music_box .big .shareLayer {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      z-index: 10;
+      background: rgba(0, 0, 0, 0.7);
+      left: 0;
+      top: 0;
+      -webkit-transform: translate3d(0, 100%, 0);
+      -webkit-transition: all .3s ease-in-out;
+      transform: translate3d(0, 100%, 0);
+      transition: all .3s ease-in-out; }
+      .music_box .big .setTime.on, .music_box .big .shareLayer.on {
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0); }
+      .music_box .big .setTime .con, .music_box .big .shareLayer .con {
+        width: 11.55556rem;
+        height: 10.44444rem;
+        background: #fff;
+        position: absolute;
+        left: 50%;
+        margin-left: -6.44444rem;
+        bottom: 0;
+        padding: 0.66667rem; }
+        .music_box .big .setTime .con .title, .music_box .big .shareLayer .con .title {
+          height: 2.13333rem;
+          line-height: 2.13333rem;
+          border-bottom: 2px solid #959595;
+          font-size: 0.8rem;
+          color: #3a3a3a; }
+        .music_box .big .setTime .con ul, .music_box .big .shareLayer .con ul {
+          padding: 0.22222rem 0 0 0.88889rem; }
+        .music_box .big .setTime .con li, .music_box .big .shareLayer .con li {
+          height: 1.6rem;
+          line-height: 1.6rem;
+          padding: 0 0 0 1.66667rem;
+          background: url(../img/icon_music_input.png) no-repeat left center;
+          background-size: auto 50%;
+          font-size: 0.71111rem;
+          color: #3a3a3a; }
+          .music_box .big .setTime .con li.on, .music_box .big .shareLayer .con li.on {
+            background: url(../img/icon_music_input_select.png) no-repeat left center;
+            background-size: auto 50%; }
+    .music_box .big .comments {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      z-index: 10;
+      background: #fff;
+      left: 0;
+      top: 0;
+      overflow-x: hidden;
+      overflow-y: scroll;
+      -webkit-transform: translate3d(0, 100%, 0);
+      -webkit-transition: all .3s ease-in-out;
+      transform: translate3d(0, 100%, 0);
+      transition: all .3s ease-in-out;
+      -webkit-overflow-scrolling: touch; }
+      .music_box .big .comments.on {
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0); }
+      .music_box .big .comments .back {
+        height: 3.33333rem;
+        border-bottom: 2px solid #efeeee; }
+        .music_box .big .comments .back span {
+          width: 1.33333rem;
+          height: 1.33333rem;
+          border-radius: 50%;
+          position: absolute;
+          background: url(../img/icon_back.png) no-repeat 45% center rgba(0, 0, 0, 0.7);
+          background-size: auto 60%;
+          left: 1rem;
+          top: 1rem; }
+      .music_box .big .comments .item {
+        width: 100%;
+        overflow: hidden;
+        border-bottom: 2px solid #efeeee; }
+        .music_box .big .comments .item .c_icon {
+          width: 2.22222rem;
+          height: 2.22222rem;
+          overflow: hidden;
+          border-radius: 50%;
+          float: left;
+          margin: 0.44444rem 0 0 1.11111rem; }
+          .music_box .big .comments .item .c_icon img {
+            width: 100%; }
+        .music_box .big .comments .item .info {
+          width: 11.55556rem;
+          float: left;
+          padding: 0 0 0 0.44444rem;
+          overflow: hidden; }
+          .music_box .big .comments .item .info span {
+            font-size: 0.44444rem;
+            float: right;
+            color: #9c968e;
+            margin: 0.88889rem 0 0; }
+          .music_box .big .comments .item .info h1 {
+            font-size: 0.71111rem;
+            color: #3a3a3a;
+            line-height: 1.02222rem;
+            margin: 0.66667rem 2.66667rem 0 0; }
+          .music_box .big .comments .item .info p {
+            color: #9c968e;
+            font-size: 0.48889rem;
+            line-height: 0.8rem;
+            margin: 0 0 0.44444rem; }
+      .music_box .big .comments .add {
+        position: fixed;
+        height: 2.4rem;
+        border-top: 2px solid #efeeee;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        background: #fff; }
+        .music_box .big .comments .add input {
+          width: 10.88889rem;
+          height: 1.46667rem;
+          border: 2px solid #bbb;
+          background: #f6f6f6;
+          border-radius: 10px;
+          color: #000;
+          margin: 0.44444rem 0 0 0.66667rem;
+          font-size: 0.62222rem;
+          padding: 0 0 0 0.4rem;
+          line-height: 1.46667rem;
+          float: left; }
+          .music_box .big .comments .add input::-webkit-input-placeholder {
+            color: #cec5b8; }
+        .music_box .big .comments .add div {
+          width: 2.88889rem;
+          height: 1.55556rem;
+          background: #148174;
+          color: #fff;
+          font-size: 0.62222rem;
+          text-align: center;
+          line-height: 1.55556rem;
+          float: left;
+          margin: 0.44444rem 0 0 0.44444rem; }
+
+.shareWX {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  left: 0;
+  top: 0;
+  background: url(../img/share_bg.png) no-repeat center top rgba(0, 0, 0, 0.7);
+  background-size: 100% auto;
+  -webkit-transform: translate3d(0, 100%, 0);
+  -webkit-transition: all 0.3s ease-in-out; }
+  .shareWX.on {
+    -webkit-transform: translate3d(0, 0, 0); }
+
+@-webkit-keyframes music_icon {
+  0% {
+    -webkit-transform: rotateZ(0deg) scale3d(1, 1, 1); }
+
+  50% {
+    -webkit-transform: rotateZ(180deg) scale3d(1, 1, 1); }
+
+  100% {
+    -webkit-transform: rotateZ(360deg) scale3d(1, 1, 1); } }
+
+.header {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  height: 2.22222rem;
+  background: #148174;
+  color: #fff; }
+  .header.header_login {
+    height: 3.33333rem;
+    background: #fff;
+    border-bottom: 2px solid #efeeee; }
+    .header.header_login .close {
+      margin: 1.11111rem 0 0 0.66667rem; }
+  .header .back, .header .close {
+    width: 1.06667rem;
+    height: 1.06667rem;
+    display: block;
+    color: #fff;
+    background: url(../img/icon_back.png) no-repeat center;
+    background-size: auto 100%;
+    margin: 0.55556rem 0 0 0.33333rem; }
+  .header .close {
+    background: url(../img/icon_close.png) no-repeat center;
+    background-size: auto 100%; }
+  .header.back ul {
+    display: none; }
+  .header.back .close, .header.back .back {
+    display: block; }
+  .header.hide, .header .hide {
+    display: none; }
+  .header ul {
+    width: 95%;
+    margin: 0 auto;
+    height: 100%; }
+    .header ul li {
+      width: 2.8rem;
+      display: inline-block;
+      height: 100%;
+      position: relative; }
+      .header ul li:last-child a {
+        background: url(../img/icon_search.png) no-repeat center center;
+        background-size: auto 100%;
+        height: 1.6rem;
+        border: 0; }
+    .header ul a {
+      display: block;
+      width: 2.71111rem;
+      font-size: 0.8rem;
+      color: #fff;
+      text-align: center;
+      position: absolute;
+      bottom: 0;
+      padding: 0 0 0.44444rem;
+      border-bottom: 3px solid #148174; }
+      .header ul a.active {
+        border-bottom: 3px solid #26ceba;
+        padding: 0 0 0.44444rem; }
