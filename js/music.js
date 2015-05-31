@@ -376,6 +376,9 @@ function Domready(fn) {
 }
 
 function setFrame(h){
+	//document.querySelector('.main').style.height = h + 'px';
+}
+function setFrame2(h){
 	document.querySelector('.main').style.height = h + 'px';
 }
 function setHeader(t){

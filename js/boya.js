@@ -4,7 +4,11 @@ function(a) {
 		var b = g.getBoundingClientRect().width;
 		b / c > 540 && (b = 540 * c),
 		a.rem = b / 16,
-		g.style.fontSize = a.rem + "px"
+		g.style.fontSize = a.rem + "px";
+		if(document.body){
+			var h = document.body.clientHeight + parseInt(window.getComputedStyle(document.body,null).getPropertyValue('padding-bottom') );
+			top.setFrame2(h);
+		}
 	}
 	var c, d, e, f = a.document,
 	g = f.documentElement,
@@ -80,5 +84,9 @@ function Domready(fn) {
 
 
 Domready(function(){
-	top.setFrame(document.body.clientHeight);
+	setTimeout(function(){
+		var h = document.body.clientHeight + parseInt(window.getComputedStyle(document.body,null).getPropertyValue('padding-bottom') );
+		console.log(h)
+		top.setFrame2(h);
+	},200)
 })
