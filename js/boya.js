@@ -6,7 +6,8 @@ function(a) {
 		a.rem = b / 16,
 		g.style.fontSize = a.rem + "px";
 		if(document.body){
-			var h = document.body.clientHeight + parseInt(window.getComputedStyle(document.body,null).getPropertyValue('padding-bottom') );
+			var h = document.body.clientHeight ;
+			console.log(h)
 			top.setFrame2(h);
 		}
 	}
@@ -85,8 +86,7 @@ function Domready(fn) {
 
 Domready(function(){
 	setTimeout(function(){
-		var h = document.body.clientHeight + parseInt(window.getComputedStyle(document.body,null).getPropertyValue('padding-bottom') );
-		console.log(h)
+		var h = document.body.clientHeight;
 		top.setFrame2(h);
 	},200)
 })

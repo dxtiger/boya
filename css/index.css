@@ -36,6 +36,9 @@ html, body {
   -webkit-user-select: none;
   user-select: none; }
 
+body {
+  padding: 0 0 2.22222rem; }
+
 .header {
   width: 100%;
   position: fixed;
@@ -293,7 +296,7 @@ html, body {
           text-align: center;
           border-radius: 10px;
           display: block;
-          width: 2.84444rem;
+          width: 2.62222rem;
           height: 1.33333rem;
           line-height: 1.33333rem; }
         .content .channel .nav ul span {
@@ -882,7 +885,7 @@ html, body {
       font-size: 0.62222rem;
       line-height: 1.33333rem;
       color: #25ccb8;
-      padding: 0 0.84444rem;
+      padding: 0 0.66667rem;
       border: 2px solid #25ccb8;
       border-radius: 10px;
       height: 1.33333rem;
