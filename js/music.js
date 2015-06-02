@@ -546,13 +546,20 @@ music = {
 
 // 背景图列表
 var BG_LIST = [
-	'http://tsharer.oss-cn-qingdao.aliyuncs.com/boyakids/img/1.jpg',
+	'http://tsharer.oss-cn-qingdao.aliyuncs.com/boyakids/img/1.png',
 	'http://tsharer.oss-cn-qingdao.aliyuncs.com/boyakids/img/2.jpg',
 	'http://tsharer.oss-cn-qingdao.aliyuncs.com/boyakids/img/3.jpg',
 	'http://tsharer.oss-cn-qingdao.aliyuncs.com/boyakids/img/4.jpg',
-	'http://tsharer.oss-cn-qingdao.aliyuncs.com/boyakids/img/5.jpg',
-	'http://tsharer.oss-cn-qingdao.aliyuncs.com/boyakids/img/6.jpg',
+	'http://tsharer.oss-cn-qingdao.aliyuncs.com/boyakids/img/5.png',
+	'http://tsharer.oss-cn-qingdao.aliyuncs.com/boyakids/img/6.png',
 	'http://tsharer.oss-cn-qingdao.aliyuncs.com/boyakids/img/7.jpg',
+	'http://tsharer.oss-cn-qingdao.aliyuncs.com/boyakids/img/8.png',
+	'http://tsharer.oss-cn-qingdao.aliyuncs.com/boyakids/img/9.png',
+	'http://tsharer.oss-cn-qingdao.aliyuncs.com/boyakids/img/10.png',
+	'http://tsharer.oss-cn-qingdao.aliyuncs.com/boyakids/img/11.png',
+	'http://tsharer.oss-cn-qingdao.aliyuncs.com/boyakids/img/12.png',
+	'http://tsharer.oss-cn-qingdao.aliyuncs.com/boyakids/img/13.png',
+	'http://tsharer.oss-cn-qingdao.aliyuncs.com/boyakids/img/14.png',
 	'http://tsharer.oss-cn-qingdao.aliyuncs.com/boyakids/img/icon_music_bg.png'
 ];
 
