@@ -89,4 +89,8 @@ Domready(function(){
 		var h = document.body.clientHeight;
 		top.setFrame2(h);
 	},200)
+	window.addEventListener('resize',function(){
+		var h = document.body.clientHeight;
+		top.setFrame2(h);
+	},false)
 })

@@ -379,7 +379,10 @@ function setFrame(h){
 	//document.querySelector('.main').style.height = h + 'px';
 }
 function setFrame2(h){
-	document.querySelector('.main').style.height = h + 'px';
+	var top = window.scrollY;
+	console.log(top)
+	document.querySelector('.main').style.height = Math.max(h,document.documentElement.clientHeight) + 'px';
+	window.scrollTo(0,top);
 }
 function setHeader(t,url){
 	var header = document.querySelector('.header'),

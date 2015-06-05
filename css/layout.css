@@ -88,12 +88,12 @@ html, body {
         -webkit-box-flex: 1;
         box-flex: 1; }
       .music_box .mini span.play {
-        background: url(../img/icon_play.png) no-repeat center;
-        background-size: auto 100%;
+        background: url(../img/icon_play.png?1) no-repeat center;
+        background-size: auto 92%;
         float: left; }
       .music_box .mini span.stop {
-        background: url(../img/icon_stop.png) no-repeat center;
-        background-size: auto 100%;
+        background: url(../img/icon_stop.png?1) no-repeat center;
+        background-size: auto 92%;
         float: left; }
       .music_box .mini span.name {
         width: 7.33333rem;
@@ -107,7 +107,7 @@ html, body {
         line-height: 2.6rem; }
       .music_box .mini span.next {
         background: url(../img/icon_next.png) no-repeat center;
-        background-size: auto 100%;
+        background-size: auto 90%;
         float: left; }
       .music_box .mini span.icon {
         margin: 0.28889rem 0.44444rem 0 0;
@@ -456,6 +456,7 @@ html, body {
   position: fixed;
   left: 0;
   top: 0;
+  z-index: 20;
   background: url(../img/share_bg.png) no-repeat center top rgba(0, 0, 0, 0.7);
   background-size: 100% auto;
   -webkit-transform: translate3d(0, 100%, 0);
