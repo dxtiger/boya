@@ -389,18 +389,25 @@ function setHeader(t,url){
 		t1 = header.querySelector('ul'),
 		lis = header.querySelectorAll('a'),
 		t2 = header.querySelector('.back'),
+		main = document.querySelector('.main'),
 		t3 = document.querySelector('.header_login');
 
 	t1.classList.add('hide');
 	t2.classList.add('hide');
 	t3.classList.add('hide');
 	var obj = [t1,t2,t3];
-	obj[t||0].classList.remove('hide');
+	if(obj[t||0]) obj[t||0].classList.remove('hide');
+	header.classList.remove('hide');
+	main.style.cssText += ';padding:2.22222rem 0 0';
 	
 	if(t == 1){
 		if(url){
 			t2.href = url;
 		}
+	}
+	if(t ==3){
+		header.classList.add('hide');
+		main.style.cssText += ';padding:0;';
 	}
 }
 function headerContral(){
@@ -550,20 +557,13 @@ music = {
 // 背景图列表
 var BG_LIST = [
 	'http://tsharer.oss-cn-qingdao.aliyuncs.com/boyakids/img/1.png',
-	'http://tsharer.oss-cn-qingdao.aliyuncs.com/boyakids/img/2.jpg',
-	'http://tsharer.oss-cn-qingdao.aliyuncs.com/boyakids/img/3.jpg',
-	'http://tsharer.oss-cn-qingdao.aliyuncs.com/boyakids/img/4.jpg',
+	'http://tsharer.oss-cn-qingdao.aliyuncs.com/boyakids/img/2.png',
+	'http://tsharer.oss-cn-qingdao.aliyuncs.com/boyakids/img/3.png',
+	'http://tsharer.oss-cn-qingdao.aliyuncs.com/boyakids/img/4.png',
 	'http://tsharer.oss-cn-qingdao.aliyuncs.com/boyakids/img/5.png',
 	'http://tsharer.oss-cn-qingdao.aliyuncs.com/boyakids/img/6.png',
-	'http://tsharer.oss-cn-qingdao.aliyuncs.com/boyakids/img/7.jpg',
-	'http://tsharer.oss-cn-qingdao.aliyuncs.com/boyakids/img/8.png',
-	'http://tsharer.oss-cn-qingdao.aliyuncs.com/boyakids/img/9.png',
-	'http://tsharer.oss-cn-qingdao.aliyuncs.com/boyakids/img/10.png',
-	'http://tsharer.oss-cn-qingdao.aliyuncs.com/boyakids/img/11.png',
-	'http://tsharer.oss-cn-qingdao.aliyuncs.com/boyakids/img/12.png',
-	'http://tsharer.oss-cn-qingdao.aliyuncs.com/boyakids/img/13.png',
-	'http://tsharer.oss-cn-qingdao.aliyuncs.com/boyakids/img/14.png',
-	'http://tsharer.oss-cn-qingdao.aliyuncs.com/boyakids/img/icon_music_bg.png'
+	'http://tsharer.oss-cn-qingdao.aliyuncs.com/boyakids/img/7.png',
+	'http://tsharer.oss-cn-qingdao.aliyuncs.com/boyakids/img/8.png'
 ];
 
 function Music(){
@@ -1188,11 +1188,11 @@ function Comments(){
 			return;
 		}
 		// // 是否登录 ****************************************************暂时先取消登录限制
-		// var isLogin = UserInfo();
-		// if(!isLogin){
-		// 	alert('还未登陆')
-		// 	return;
-		// }
+		var isLogin = UserInfo();
+		if(!isLogin){
+			alert('还未登陆')
+			return;
+		}
 		// wait to 提交数据
 		var isreply = v.indexOf(input.getAttribute('data-name')) > -1 ? 1 : 0;
 		//var data = '?user_id='+isLogin.uid + '&item_id='+ __M.getId() + '&content='+encodeURIComponent(v)+'&reply_id='+isreply;
@@ -1212,12 +1212,12 @@ function Comments(){
 	function append(info,con){
 		var div = document.createElement('div');
 		div.className = 'item';
-		div.setAttribute('data-name',isLogin.nickname);
-		div.setAttribute('data-id',isLogin.uid);
+		div.setAttribute('data-name',info.nickname);
+		div.setAttribute('data-id',info.uid);
 		var t = new Date(),
 			h = t.getHours(),
 			m = t.getMinutes();
-		div.innerHTML = '<div class="c_icon"><img src="'+isLogin.headimgurl+'"/></div><div class="info"><span>今天 '+h+':'+m+'</span><h1>'+isLogin.nickname+'</h1><p>'+v+'</p></div>';
+		div.innerHTML = '<div class="c_icon"><img src="'+info.headimgurl+'"/></div><div class="info"><span>今天 '+h+':'+m+'</span><h1>'+isLogin.nickname+'</h1><p>'+v+'</p></div>';
 		document.querySelector('.comments .list').appendChild(div);
 	}
 
