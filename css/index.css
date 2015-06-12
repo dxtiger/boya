@@ -154,7 +154,7 @@ body {
             height: 2.55556rem;
             width: 100%;
             text-indent: 0.66667rem;
-            background: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.3) 50%, rgba(0, 0, 0, 0.6) 100%); }
+            background: -webkit-linear-gradient(270deg, transparent 0%, rgba(0, 0, 0, 0.3) 50%, rgba(0, 0, 0, 0.6) 100%); }
         .content .scroll .item .topic a .info {
           padding: 0.44444rem 0 0 0.77778rem;
           position: relative; }
@@ -255,7 +255,7 @@ body {
         width: 100%;
         height: 1.77778rem;
         line-height: 1.68889rem;
-        background: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.3) 50%, rgba(0, 0, 0, 0.6) 100%); }
+        background: -webkit-linear-gradient(270deg, transparent 0%, rgba(0, 0, 0, 0.3) 50%, rgba(0, 0, 0, 0.6) 100%); }
       .content .theme-list a i {
         display: none;
         background: url(../img/icon_audio.png) no-repeat;
@@ -426,11 +426,12 @@ body {
       width: 1.44444rem;
       height: 1.44444rem;
       border-radius: 50%;
-      position: absolute;
+      position: fixed;
       background: url(../img/icon_back.png) no-repeat 45% center rgba(0, 0, 0, 0.7);
       background-size: auto 60%;
       left: 0.66667rem;
-      top: 0.44444rem; }
+      top: 0.44444rem;
+      z-index: 30; }
     .content .album_list .pic .title {
       position: absolute;
       color: #fff;
@@ -443,7 +444,7 @@ body {
       height: 2.55556rem;
       width: 100%;
       text-indent: 0.66667rem;
-      background: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.3) 50%, rgba(0, 0, 0, 0.6) 100%); }
+      background: -webkit-linear-gradient(270deg, transparent 0%, rgba(0, 0, 0, 0.3) 50%, rgba(0, 0, 0, 0.6) 100%); }
     .content .album_list .pic .state {
       position: absolute;
       right: 0.66667rem;
@@ -787,7 +788,7 @@ body {
         color: #000;
         border-radius: 10px;
         float: left;
-        background: linear-gradient(to bottom, #e4e4e4 0%, #f6f6f6 50%, #f6f6f6 100%); }
+        background: -webkit-linear-gradient(270deg, #e4e4e4 0%, #f6f6f6 50%, #f6f6f6 100%); }
         .content .login .item input::-webkit-input-placehodler {
           color: #cec5b8; }
       .content .login .item select {

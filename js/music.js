@@ -567,14 +567,20 @@ var BG_LIST = [
 ];
 
 function Music(){
-	var temp = '<!-- 底部mini播放器--><div class="mini"><div style="width:0" class="progress"></div><div class="info"><span class="play"></span><span data-v="<@= item_id @>,<@= album_id @>,<@= subject_list @>" class="next"></span><span class="name" onclick=\'MContral.show(1)\'><@= title @></span><span class="icon"><img src="<@= icon @>"/></span></div></div><!-- 满屏播放器--><div class="big"><div class="bg"><img src="<@= bg @>"/></div><a href="javascript:void(0)"  onclick=\'MContral.show()\' class="back"></a><a href="http://m.boyakids.cn/?_c=album&_a=viewAlbum&albumId=<@= album_id @>" onclick="MContral.show()" class="menu" target="frame"></a><div class="icon"><img src="<@= icon @>"/></div><div class="player"><div class="like <@ enjoy.self_enjoy?\'on\':\'\' @>"><div data-id="<@= item_id @>"></div><span><@= (enjoy.count||0) @>人喜欢</span></div><div class="name"><h1><@= title @></h1>'+
+	var temp = '<!-- 底部mini播放器--><div class="mini"><div style="width:0" class="progress"></div><div class="info"><span class="play"></span><span data-v="<@= item_id @>,<@= album_id @>,<@= subject_list @>" class="next"></span><span class="name" onclick=\'MContral.show(1)\'><@= title @></span><span class="icon"><img src="<@= icon @>"/></span></div></div><!-- 满屏播放器--><div class="big"><div class="bg"><img src="<@= bg @>"/></div><a href="javascript:void(0)"  onclick=\'MContral.show()\' class="back"></a><a href="http://m.boyakids.cn/?_c=album&_a=viewAlbum&albumId=<@= album_id @>" onclick="MContral.show()" class="menu" target="frame"></a><div class="icon"><img src="<@= icon @>"/></div><div class="player"><div class="like <@ enjoy.self_enjoy?\'on\':\'\' @>"><div data-id="<@= item_id @>"></div>'
+	+'<@ if(enjoy.self_enjoy){ @>'
+	+'<span>已收藏</span>'
+	+'<@ }else{ @>'
+	+'<span>收藏</span>'
+	+'<@ } @>'
+	+'</div><div class="name"><h1><@= title @></h1>'+
 	'<@ if(anchor){ @>'+
 	'<span>主播：<@= anchor @></span>'+
 	'<@ } @>'+
 	'<@ if(from) { @>'+
 	'<span>来自：<@= from @></span>'+
 	'<@ } @>'+
-	'</div><div class="progress"><span class="start"></span><div class="prog"><div style="width:0"></div><span style="left:0" data-max=\'94\'></span></div><span class="end"></span></div><div class="btns"><span class="back"></span><span class="play"></span><span class="next" data-v="<@= item_id @>,<@= album_id @>,<@= subject_list @>"></span></div><div class="others"><div class="clock"></div><div class="comment"><span><@= comment.count ? \'(\'+ comment.count +\')\' : \'\' @></span></div><div class="share"></div></div></div><div class="setTime"><div class="con"><div class="title">设置时间</div><ul><li data-time=0>不设置</li><li data-time=1>当前音频播放完毕后关闭</li><li data-time=2>10分钟后关闭</li><li data-time=3>20分钟后关闭</li><li data-time=4>30分钟后关闭</li></ul></div></div><!-- comment--><div class="comments"><div class="back"><span></span></div><div class="list"><@ for(var i=0,l=comment.data.length;i<l;i++){ @><div class="item" data-name=\'<@= comment.data[i].user_name @>\' data-id="<@= comment.data[i].user_id @>"><div class="c_icon"><img src="img/100.png"/></div><div class="info"><span>今天 18:00</span><h1><@= comment.data[i].user_name @></h1><p><@= comment.data[i].content @></p></div></div><@ } @></div><div class="add"><input type="text" placeholder="输入评论"/><div>发表</div></div></div></div><!-- audio--><audio id="music_audio" src="<@= media @>" autoplay=\'autoplay\'></audio>',
+	'</div><div class="progress"><span class="start"></span><div class="prog"><div style="width:0"></div><span style="left:0" data-max=\'94\'></span></div><span class="end"></span></div><div class="btns"><span class="back"></span><span class="play"></span><span class="next" data-v="<@= item_id @>,<@= album_id @>,<@= subject_list @>"></span></div><div class="others"><div class="clock"></div><div class="comment"><span><@= comment.count ? \'(\'+ comment.count +\')\' : \'\' @></span></div><div class="share"></div></div></div><div class="setTime"><div class="con"><div class="title">设置时间</div><ul><li data-time=0>不设置</li><li data-time=1>当前音频播放完毕后关闭</li><li data-time=2>10分钟后关闭</li><li data-time=3>20分钟后关闭</li><li data-time=4>30分钟后关闭</li></ul></div></div><!-- comment--><div class="comments"><div class="back"><span></span></div><div class="list"><@ for(var key in comment.data){ @><div class="item" data-name=\'<@= comment.data[key].user_name @>\' data-id="<@= comment.data[key].user_id @>"><div class="c_icon"><img src="<@= comment.data[key].headimgurl @>"/></div><div class="info"><span>今天 18:00</span><h1><@= comment.data[key].user_name @></h1><p><@= comment.data[key].content @></p></div></div><@ } @></div><div class="add"><input type="text" placeholder="输入评论"/><div>发表</div></div></div></div><!-- audio--><audio id="music_audio" src="<@= media @>" autoplay=\'autoplay\'></audio>',
 	box = document.querySelector('.music_box'),
 	te= TE(),
 	yn = 0,item_id=0,
@@ -674,7 +680,6 @@ function Music(){
 		data.bg = getBg()
 		// item_id , 音乐id ， time = 从什么时间开始播
 		box.innerHTML = te.render(temp,data);
-
 		// 初始化所有事件
 		init();
 
@@ -825,12 +830,13 @@ function Contrals(player){
 				item_id : item_id
 			},
 			success : function(data){
-
+				
 			}
 		})
 		objs.like.classList.toggle('on');
 		var span = objs.like.querySelector('span');
-		span.innerHTML =  Math.max( 0, (parseInt(span.innerHTML) + (state?-1:1) )) + '人喜欢';
+		//span.innerHTML =  Math.max( 0, (parseInt(span.innerHTML) + (state?-1:1) )) + '人喜欢';
+		span.innerHTML = objs.like.classList.contains('on') ? '已收藏' : '收藏'
 	}
 	objs.like.addEventListener('click',fav,false);
 
@@ -1217,7 +1223,7 @@ function Comments(){
 		var t = new Date(),
 			h = t.getHours(),
 			m = t.getMinutes();
-		div.innerHTML = '<div class="c_icon"><img src="'+info.headimgurl+'"/></div><div class="info"><span>今天 '+h+':'+m+'</span><h1>'+isLogin.nickname+'</h1><p>'+v+'</p></div>';
+		div.innerHTML = '<div class="c_icon"><img src="'+info.headimgurl+'"/></div><div class="info"><span>今天 '+h+':'+m+'</span><h1>'+info.nickname+'</h1><p>'+con+'</p></div>';
 		document.querySelector('.comments .list').appendChild(div);
 	}
 
