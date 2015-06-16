@@ -380,7 +380,7 @@ function setFrame(h){
 }
 function setFrame2(h){
 	var top = window.scrollY;
-	console.log(top)
+	//console.log(top)
 	document.querySelector('.main').style.height = Math.max(h,document.documentElement.clientHeight) + 'px';
 	window.scrollTo(0,top);
 }
@@ -515,7 +515,11 @@ function UserInfo(){
 		info = {};
 		for(var i=0,l=coo.length;i<l;i++){
 			var k = coo[i].split(':');
-			info[k[0]] = k[1]
+			if(i==l-1){
+				info[k[0]] = k[1]+k[2]
+			}else{
+				info[k[0]] = k[1]
+			}
 		}
 		return info;
 	}
@@ -556,14 +560,14 @@ music = {
 
 // 背景图列表
 var BG_LIST = [
-	'http://tsharer.oss-cn-qingdao.aliyuncs.com/boyakids/img/1.png',
 	'http://tsharer.oss-cn-qingdao.aliyuncs.com/boyakids/img/2.png',
 	'http://tsharer.oss-cn-qingdao.aliyuncs.com/boyakids/img/3.png',
 	'http://tsharer.oss-cn-qingdao.aliyuncs.com/boyakids/img/4.png',
 	'http://tsharer.oss-cn-qingdao.aliyuncs.com/boyakids/img/5.png',
 	'http://tsharer.oss-cn-qingdao.aliyuncs.com/boyakids/img/6.png',
 	'http://tsharer.oss-cn-qingdao.aliyuncs.com/boyakids/img/7.png',
-	'http://tsharer.oss-cn-qingdao.aliyuncs.com/boyakids/img/8.png'
+	'http://tsharer.oss-cn-qingdao.aliyuncs.com/boyakids/img/8.png',
+	'http://tsharer.oss-cn-qingdao.aliyuncs.com/boyakids/img/9.png'
 ];
 
 function Music(){
@@ -580,13 +584,13 @@ function Music(){
 	'<@ if(from) { @>'+
 	'<span>来自：<@= from @></span>'+
 	'<@ } @>'+
-	'</div><div class="progress"><span class="start"></span><div class="prog"><div style="width:0"></div><span style="left:0" data-max=\'94\'></span></div><span class="end"></span></div><div class="btns"><span class="back"></span><span class="play"></span><span class="next" data-v="<@= item_id @>,<@= album_id @>,<@= subject_list @>"></span></div><div class="others"><div class="clock"></div><div class="comment"><span><@= comment.count ? \'(\'+ comment.count +\')\' : \'\' @></span></div><div class="share"></div></div></div><div class="setTime"><div class="con"><div class="title">设置时间</div><ul><li data-time=0>不设置</li><li data-time=1>当前音频播放完毕后关闭</li><li data-time=2>10分钟后关闭</li><li data-time=3>20分钟后关闭</li><li data-time=4>30分钟后关闭</li></ul></div></div><!-- comment--><div class="comments"><div class="back"><span></span></div><div class="list"><@ for(var key in comment.data){ @><div class="item" data-name=\'<@= comment.data[key].user_name @>\' data-id="<@= comment.data[key].user_id @>"><div class="c_icon"><img src="<@= comment.data[key].headimgurl @>"/></div><div class="info"><span>今天 18:00</span><h1><@= comment.data[key].user_name @></h1><p><@= comment.data[key].content @></p></div></div><@ } @></div><div class="add"><input type="text" placeholder="输入评论"/><div>发表</div></div></div></div><!-- audio--><audio id="music_audio" src="<@= media @>" autoplay=\'autoplay\'></audio>',
+	'</div><div class="progress"><span class="start"></span><div class="prog"><div style="width:0"></div><span style="left:0" data-max=\'94\'></span></div><span class="end"></span></div><div class="btns"><span class="back"></span><span class="play"></span><span class="next" data-v="<@= item_id @>,<@= album_id @>,<@= subject_list @>"></span></div><div class="others"><div class="clock"></div><div class="comment"><span><@= comment.count ? \'(\'+ comment.count +\')\' : \'\' @></span></div><div class="share"></div></div></div><div class="setTime"><div class="con"><div class="title">设置时间</div><ul><li data-time=0>不设置</li><li data-time=1>当前音频播放完毕后关闭</li><li data-time=2>10分钟后关闭</li><li data-time=3>20分钟后关闭</li><li data-time=4>30分钟后关闭</li></ul></div></div><!-- comment--><div class="comments"><div class="back"><span></span></div><div class="list"><@ for(var key in comment.data){ @><div class="item" data-name=\'<@= comment.data[key].user_name @>\' data-id="<@= comment.data[key].user_id @>"><div class="c_icon"><img src="<@= comment.data[key].headimgurl @>"/></div><div class="info"><span>今天 18:00</span><h1><@= comment.data[key].user_name @></h1><p><@= comment.data[key].content @></p></div></div><@ } @></div><div class="add"><input type="text" placeholder="输入评论"/><div>发表</div></div></div></div><!-- audio--><audio id="music_audio" autoplay="auto" src="<@= media @>"></audio>',
 	box = document.querySelector('.music_box'),
 	te= TE(),
 	yn = 0,item_id=0,
 	a=0,s=0,
 	P;
-	// 获取音乐
+	// 获取音乐 <@= media @>
 	function getMusic(id,_yn,_a,_s,n){ // gid 音乐id， time从什么时间点开始播放， type 音乐来源，专辑or主题
 		var url = 'http://m.boyakids.cn/', // 获取音乐数据接口
 			//url = 'js/data.js', // 获取音乐数据接口
@@ -595,6 +599,10 @@ function Music(){
 			MContral.hide();
 			console.log('没有音乐了')
 			return
+		}
+		if(id == item_id){
+			MContral.show(1);
+			return;
 		}
 		req.jsonp({
 			url : url,
@@ -652,13 +660,12 @@ function Music(){
 
 	// 渲染
 	function render(data){
-		
+		if(P){
+			P.pause();
+		}
 		if(!data.item_id){
-			if(P){
-				P.pause();
-			}
 			MContral.hide();
-			console.log('没有更新音频了')
+			console.log('没有更新音频了');
 			return;
 		}
 		var history = localStorage.getItem('historyList') || '';
@@ -677,7 +684,7 @@ function Music(){
 		}
 		
 		// 随机一张bg图
-		data.bg = getBg()
+		data.bg = getBg();
 		// item_id , 音乐id ， time = 从什么时间开始播
 		box.innerHTML = te.render(temp,data);
 		// 初始化所有事件
@@ -700,9 +707,18 @@ function Music(){
 
 	// 初始化所有事件
 	function init(){
+		if(P){
+			P = null;
+		}
 		// 音乐播放
+
 		P = Player();
-		P.play();
+		//P.play();
+		document.addEventListener("WeixinJSBridgeReady", function(){
+			player.load();
+			P.play();
+		}, false);
+		
 		P.end(function(){
 			getNextMusic(item_id,1,a,s)
 		});
@@ -722,6 +738,8 @@ function Music(){
 
 		// 分享按钮
 		ShareContral();
+
+		
 	}
 
 	return {
@@ -753,7 +771,6 @@ function Contrals(player){
 		objs.mini_play.classList.add('stop');
 		player.play();
 		objs.icon.classList.add('on');
-
 		state = true;
 	}
 	function pause(){
@@ -764,14 +781,15 @@ function Contrals(player){
 		state = false;
 	}
 	function contral(e){
-		
 		e.stopPropagation&&e.stopPropagation();
 		e.preventDefault&&e.preventDefault();
+		//play();
 		
 		var load = player.isLoaded();
 		if(!load){
-			alert('音乐加载中,请稍后!');
-			return;
+		 	alert('音乐加载中,请稍后!');
+			player.load();
+		 	return;
 		}
 		if(state){
 			pause();
@@ -958,13 +976,17 @@ function Player(){
 	function init(){
 		video.addEventListener('canplay',canplay,false);
 		video.addEventListener('timeupdate',timeupdate,false);
-		video.addEventListener('ended',ended,false)
+		video.addEventListener('ended',ended,false);
+	}
+	function load(){
+		video.load();
 	}
 	function canplay(){
 		loaded = true;
 		state = true;
 		duration = video.duration;
 		cb.ready && cb.ready(duration);
+		play();
 	}
 	function setReady(_cb){
 		cb.ready = _cb;
@@ -980,7 +1002,15 @@ function Player(){
 	}
 
 	function play(){
+
 		if(!loaded) return;
+		// var ev = new UIEvent('play', {
+		// 	'view': window,
+		// 	'bubbles': true,
+		// 	'cancelable': true
+		// });
+		// video.dispatchEvent(ev);
+		loaded = true;
 		video.play();
 		state = true;
 		cb.play && cb.play();
@@ -1042,7 +1072,8 @@ function Player(){
 		distory : distory, // 销毁
 		ready : setReady,
 		getState : getState, // 获取状态
-		isLoaded : isLoaded // 是否加载完成
+		isLoaded : isLoaded, // 是否加载完成
+		load : load  // 加载
 	}
 }
 
@@ -1168,8 +1199,10 @@ function Comments(){
 		layer.classList.add('on')
 	}
 	function hide(e){
-		e.stopPropagation();
-		e.preventDefault();
+		if(e){
+			e.stopPropagation();
+			e.preventDefault();
+		}
 		layer.classList.remove('on');
 		//alert(layer.classList)
 	}
@@ -1189,6 +1222,8 @@ function Comments(){
 		return find(t.parentNode)
 	}
 	function add(e){
+		e.stopPropagation();
+		e.preventDefault();
 		var v = input.value;
 		if(!v || /^回复[^\:]*\: $/.test(v)){
 			return;
@@ -1196,7 +1231,18 @@ function Comments(){
 		// // 是否登录 ****************************************************暂时先取消登录限制
 		var isLogin = UserInfo();
 		if(!isLogin){
-			alert('还未登陆')
+			alert('还未登陆');
+			hide();
+			MContral.hide()
+
+			var ev = new MouseEvent('click', {
+				'view': window,
+				'bubbles': true,
+				'cancelable': true
+			});
+			var a = document.querySelectorAll('a')[3];
+			if(a) a.dispatchEvent(ev);
+			
 			return;
 		}
 		// wait to 提交数据
@@ -1210,7 +1256,9 @@ function Comments(){
 				_a:'addComment',
 				content : encodeURIComponent(v)
 			},
-			success : function(){}
+			success : function(){
+				input.value = '';
+			}
 		})
 		append(isLogin,v)
 	}
@@ -1244,15 +1292,24 @@ function Comments(){
 // share
 function ShareContral(){
 	var div = document.querySelector('.shareWX'),
-		btn = document.querySelector('.others .share');
+		btn = document.querySelector('.others .share'),
+		ua = navigator.userAgent.toLowerCase(),
+		wx = /micromessenger/.test(ua) ? true : false;
 
 	if(!div){
 		div = document.createElement('div');
 		div.classList.add('shareWX');
+		if(!wx){
+			div.classList.add('shareWX2')
+		}
 		Domready(function(){
 			document.body.appendChild(div);
 		})
 		div.addEventListener('click',hide,false);
+	}else{
+		if(!wx){
+			div.classList.add('shareWX2')
+		}
 	}
 
 	btn.addEventListener('click',show,false);

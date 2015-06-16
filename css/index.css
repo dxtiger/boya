@@ -827,6 +827,12 @@ body {
           display: inline-block;
           border-radius: 10px;
           padding: 0.04444rem 0.11111rem; }
+          .content .login .item div.setIcon em {
+            padding: 0.04444rem 0.11111rem;
+            line-height: 0.88889rem;
+            display: block;
+            height: 0.88889rem;
+            margin: 0; }
       .content .login .item em {
         display: inline-block;
         height: 1.46667rem;
@@ -863,7 +869,7 @@ body {
       color: #25ccb8;
       font-size: 0.66667rem; }
   .content .searchBox .search {
-    padding: 1.11111rem 0 1.55556rem 0.66667rem;
+    padding: 1.11111rem 0 0.66667rem 0.66667rem;
     overflow: hidden; }
     .content .searchBox .search input {
       height: 1.33333rem;
@@ -953,6 +959,8 @@ body {
       font-size: 0.8rem;
       color: #3a3a3a;
       line-height: 1.11111rem; }
+      .content .searchBox .result .item h2 a {
+        color: #3a3a3a; }
     .content .searchBox .result .item p {
       font-size: 0.62222rem;
       color: #9c968e;
