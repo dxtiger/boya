@@ -778,6 +778,10 @@ body {
       right: 0.66667rem; }
   .content .login {
     padding: 2.66667rem 0 0 1.33333rem; }
+    .content .login .errmsg {
+      font-size: 0.53333rem;
+      padding: 0.44444rem 0 0;
+      width: 60%; }
     .content .login .item {
       padding: 0 0 0.88889rem; }
       .content .login .item input {
