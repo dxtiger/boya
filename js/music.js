@@ -464,6 +464,13 @@ Domready(function(){
 			//box.style.height = h + 'px';
 			box.classList.add('on');
 			state = 2;
+			if(__M){
+				try{
+					__CreateShare(__M.getId());
+					//alert(__M.getId())
+				}catch(e){}
+				
+			}
 		}
 	}
 	function setState(){
@@ -584,7 +591,9 @@ function Music(){
 	'<@ if(from) { @>'+
 	'<span>来自：<@= from @></span>'+
 	'<@ } @>'+
-	'</div><div class="progress"><span class="start"></span><div class="prog"><div style="width:0"></div><span style="left:0" data-max=\'94\'></span></div><span class="end"></span></div><div class="btns"><span class="back"></span><span class="play"></span><span class="next" data-v="<@= item_id @>,<@= album_id @>,<@= subject_list @>"></span></div><div class="others"><div class="clock"></div><div class="comment"><span><@= comment.count ? \'(\'+ comment.count +\')\' : \'\' @></span></div><div class="share"></div></div></div><div class="setTime"><div class="con"><div class="title">设置时间</div><ul><li data-time=0>不设置</li><li data-time=1>当前音频播放完毕后关闭</li><li data-time=2>10分钟后关闭</li><li data-time=3>20分钟后关闭</li><li data-time=4>30分钟后关闭</li></ul></div></div><!-- comment--><div class="comments"><div class="back"><span></span></div><div class="list"><@ for(var key in comment.data){ @><div class="item" data-name=\'<@= comment.data[key].user_name @>\' data-id="<@= comment.data[key].user_id @>"><div class="c_icon"><img src="<@= comment.data[key].headimgurl @>"/></div><div class="info"><span>今天 18:00</span><h1><@= comment.data[key].user_name @></h1><p><@= comment.data[key].content @></p></div></div><@ } @></div><div class="add"><input type="text" placeholder="输入评论"/><div>发表</div></div></div></div><!-- audio--><audio id="music_audio" autoplay="auto" src="<@= media @>"></audio>',
+	'</div><div class="progress"><span class="start"></span><div class="prog"><div style="width:0"></div><span style="left:0" data-max=\'94\'></span></div><span class="end"></span></div><div class="btns"><span class="back"></span><span class="play"></span><span class="next" data-v="<@= item_id @>,<@= album_id @>,<@= subject_list @>"></span></div><div class="others"><div class="clock"></div><div class="comment"><span><@= comment.count ? \'(\'+ comment.count +\')\' : \'\' @></span></div><div class="share"></div></div></div><div class="setTime"><div class="con"><div class="title">设置时间</div><ul><li data-time=0>不设置</li><li data-time=1>当前音频播放完毕后关闭</li><li data-time=2>10分钟后关闭</li><li data-time=3>20分钟后关闭</li><li data-time=4>30分钟后关闭</li></ul></div></div><!-- comment--><div class="comments"><div class="back"><span></span></div><div class="list"><@ for(var key in comment.data){ @><div class="item" data-name=\'<@= comment.data[key].user_name @>\' data-id="<@= comment.data[key].user_id @>"><div class="c_icon"><img src="<@= comment.data[key].headimgurl @>"/></div><div class="info"><span>今天 18:00</span><h1><@= comment.data[key].user_name @></h1><p><@= comment.data[key].content @></p></div></div><@ } @></div><div class="add"><input type="text" placeholder="输入评论"/><div>发表</div></div></div>'
+	+'<div class="desc"><div class="wraper"><div class="item"><@= desc @></div></div></div>'
+	+'</div><!-- audio--><audio id="music_audio" autoplay="auto" src="<@= media @>"></audio>',
 	box = document.querySelector('.music_box'),
 	te= TE(),
 	yn = 0,item_id=0,
@@ -600,10 +609,8 @@ function Music(){
 			console.log('没有音乐了')
 			return
 		}
-		if(id == item_id){
-			MContral.show(1);
-			return;
-		}
+		// share set
+		
 		req.jsonp({
 			url : url,
 			data : {
@@ -624,6 +631,15 @@ function Music(){
 						n = 1;
 					}
 					MContral.show(1);
+					if(__M){
+						try{
+							__CreateShare(data.msg.item_id);
+							///alert(data.msg.item_id)
+						}catch(e){}
+					}
+					if(data.msg.item_id == item_id){
+						return;
+					}
 					item_id = data.msg.item_id;
 					a = data.msg.album_id;
 					s = data.msg.subject_list
@@ -685,6 +701,7 @@ function Music(){
 		
 		// 随机一张bg图
 		data.bg = getBg();
+		//data.desc = '望庐山瀑布<br/>李白<br/>日照香炉生紫烟<br/>遥看瀑布挂前川<br/>飞流直下三千尺<br/>疑是银河落九天<br/>李白<br/>日照香炉生紫烟<br/>遥看瀑布挂前川<br/>飞流直下三千尺<br/>疑是银河落九天<br/>李白<br/>日照香炉生紫烟<br/>遥看瀑布挂前川<br/>飞流直下三千尺<br/>疑是银河落九天<br/>李白<br/>日照香炉生紫烟<br/>遥看瀑布挂前川<br/>飞流直下三千尺<br/>疑是银河落九天<br/>李白<br/>日照香炉生紫烟<br/>遥看瀑布挂前川<br/>飞流直下三千尺<br/>疑是银河落九天<br/>李白<br/>日照香炉生紫烟<br/>遥看瀑布挂前川<br/>飞流直下三千尺<br/>疑是银河落九天<br/>李白<br/>日照香炉生紫烟<br/>遥看瀑布挂前川<br/>飞流直下三千尺<br/>疑是银河落九天'
 		// item_id , 音乐id ， time = 从什么时间开始播
 		box.innerHTML = te.render(temp,data);
 		// 初始化所有事件
@@ -760,8 +777,12 @@ function Contrals(player){
 		pre : document.querySelector('.btns .back'),
 		mini_play : document.querySelector('.info .play'),
 		mini_next : document.querySelector('.info .next'),
+		mini_icon : document.querySelector('.info .icon'),
 		icon : document.querySelector('.big .icon'),
-		like : document.querySelector('.like')
+		like : document.querySelector('.like'),
+		bg : document.querySelector('.big .bg'),
+		desc : document.querySelector('.big .desc'),
+		text : document.querySelector('.big .wraper')
 	},
 	timer,t=8000,current=0,req = Request(),
 	state=false;
@@ -769,6 +790,7 @@ function Contrals(player){
 	function play(){
 		objs.play.classList.add('stop');
 		objs.mini_play.classList.add('stop');
+		objs.mini_icon.classList.add('on');
 		player.play();
 		objs.icon.classList.add('on');
 		state = true;
@@ -777,6 +799,7 @@ function Contrals(player){
 		objs.play.classList.remove('stop');
 		objs.mini_play.classList.remove('stop');
 		objs.icon.classList.remove('on')
+		objs.mini_icon.classList.remove('on');
 		player.pause();
 		state = false;
 	}
@@ -805,6 +828,8 @@ function Contrals(player){
 
 
 	function next(e){
+		e.stopPropagation&&e.stopPropagation();
+		e.preventDefault&&e.preventDefault();
 		var tar = e.target;
 		var v = tar.getAttribute('data-v');
 		v = v.split(',');
@@ -815,8 +840,21 @@ function Contrals(player){
 		}
 		
 	}
-	function back(){
+	function back(e){
+		e.stopPropagation&&e.stopPropagation();
+		e.preventDefault&&e.preventDefault();
 		__M.getPreMusic();
+	}
+
+	function showDesc(e){
+		var inner = objs.desc.querySelector('.item').innerHTML;
+		if(!inner) return;
+		var s = objs.desc.classList.contains('show') ? true : false;
+		if(s){
+			objs.desc.classList.remove('show');
+			return;
+		}
+		objs.desc.classList.add('show')
 	}
 
 	objs.play.addEventListener('click',contral,false);
@@ -824,10 +862,15 @@ function Contrals(player){
 	objs.next.addEventListener('click',next,false);
 	objs.mini_next.addEventListener('click',next,false);
 	objs.pre.addEventListener('click',back,false);
+	objs.bg.addEventListener('click',showDesc,false);
+	objs.desc.addEventListener('click',showDesc,false);
+	objs.text.style.cssText += ';height:11.3rem;'
 
 
 	// 喜欢事件
 	function fav(e){
+		e.stopPropagation&&e.stopPropagation();
+		e.preventDefault&&e.preventDefault();
 		// 是否登录 暂时先取消登录限制*************************************************************
 		// var isLogin = UserInfo();
 		// if(!isLogin){

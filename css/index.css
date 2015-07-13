@@ -139,6 +139,18 @@ body {
         .content .scroll .item .topic a .pic {
           position: relative;
           width: 100%; }
+          .content .scroll .item .topic a .pic::after {
+            display: block;
+            width: 1.11111rem;
+            height: 1.11111rem;
+            background: url(../img/icon_play.png) no-repeat 0.11111rem center rgba(0, 0, 0, 0.7);
+            background-size: 100%;
+            position: absolute;
+            z-index: 2;
+            right: 0.22222rem;
+            bottom: 0.55556rem;
+            content: '';
+            border-radius: 50%; }
           .content .scroll .item .topic a .pic img {
             width: 100%;
             display: block; }
@@ -193,25 +205,47 @@ body {
           margin: 0 0 1rem; }
         .content .scroll .item .single a dt {
           width: 5.77778rem;
-          height: 4.88889rem;
+          height: 4.22222rem;
           float: left;
           overflow: hidden;
-          padding: 0 0 0 0.66667rem; }
+          padding: 0 0 0 0.66667rem;
+          position: relative; }
+          .content .scroll .item .single a dt::after {
+            display: block;
+            width: 1.11111rem;
+            height: 1.11111rem;
+            background: url(../img/icon_play.png) no-repeat 0.11111rem center rgba(0, 0, 0, 0.7);
+            background-size: 100%;
+            position: absolute;
+            z-index: 2;
+            right: 0.22222rem;
+            bottom: 0.22222rem;
+            content: '';
+            border-radius: 50%; }
           .content .scroll .item .single a dt img {
             width: 100%; }
+          .content .scroll .item .single a dt span {
+            display: inline-block;
+            color: #fff;
+            font-size: 0.4rem;
+            height: 0.75556rem;
+            line-height: 34px;
+            padding: 0 0.22222rem;
+            position: absolute;
+            left: 0.66667rem;
+            top: 0;
+            background: rgba(38, 206, 186, 0.7);
+            z-index: 2; }
         .content .scroll .item .single a dd {
           width: 8.22222rem;
           float: left;
-          padding: 0 0 0 0.66667rem; }
-          .content .scroll .item .single a dd span {
-            display: block;
-            color: #d0cac3;
-            font-size: 0.44444rem;
-            height: 0.77778rem; }
+          padding: 0 0 0 0.66667rem;
+          height: 190px;
+          position: relative; }
           .content .scroll .item .single a dd h2 {
             color: #3a3a3a;
             font-size: 0.71111rem;
-            height: 1.2rem;
+            height: 1.11111rem;
             overflow: hidden;
             white-space: nowrap;
             width: 100%; }
@@ -224,11 +258,23 @@ body {
               margin: 0 0 0 5px; }
           .content .scroll .item .single a dd p {
             color: #9c968e;
-            font-size: 0.62222rem;
-            line-height: 0.8rem;
+            font-size: 0.48889rem;
+            line-height: 0.75556rem;
             padding: 0.22222rem 0 0 0;
-            max-height: 2.4rem;
+            max-height: 2.22222rem;
             overflow: hidden; }
+          .content .scroll .item .single a dd span {
+            display: inline-block;
+            height: 0.66667rem;
+            line-height: 0.66667rem;
+            font-size: 0.44444rem;
+            color: #c1bfbf;
+            padding: 0 0 0 0.44444rem;
+            background: url(../img/icon_readcount.png) no-repeat 0 center;
+            background-size: auto 66.6%;
+            position: absolute;
+            right: 0.33333rem;
+            bottom: 0; }
   .content .theme-list {
     overflow: hidden;
     padding: 0.66667rem 0 0 0.44444rem; }
@@ -781,7 +827,8 @@ body {
     .content .login .errmsg {
       font-size: 0.53333rem;
       padding: 0.44444rem 0 0;
-      width: 60%; }
+      width: 60%;
+      color: #333; }
     .content .login .item {
       padding: 0 0 0.88889rem; }
       .content .login .item input {
