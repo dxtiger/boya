@@ -206,7 +206,8 @@ html, body {
         background-size: 50% auto;
         margin: 0 auto 0.22222rem; }
       .music_box .big .like.on div {
-        background: url(../img/icon_music_like_2.png) no-repeat 55% center #f63f3f; }
+        background: url(../img/icon_music_like_2.png) no-repeat 50% center #f63f3f;
+        background-size: 50% auto; }
       .music_box .big .like span {
         font-size: 0.48889rem;
         color: #9c968e;
