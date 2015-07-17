@@ -872,12 +872,22 @@ function Contrals(player){
 		e.stopPropagation&&e.stopPropagation();
 		e.preventDefault&&e.preventDefault();
 		// 是否登录 暂时先取消登录限制*************************************************************
-		// var isLogin = UserInfo();
-		// if(!isLogin){
-		// 	console.log('还未登陆');
-		// 	document.querySelector('iframe').src = URL.login;
-		// 	return;
-		// }
+		var isLogin = UserInfo();
+		if(!isLogin){
+			alert('还未登陆');
+			//hide();
+			MContral.hide()
+
+			var ev = new MouseEvent('click', {
+				'view': window,
+				'bubbles': true,
+				'cancelable': true
+			});
+			var a = document.querySelectorAll('a')[3];
+			if(a) a.dispatchEvent(ev);
+			
+			return;
+		}
 		// 是否已喜欢
 		var state = objs.like.classList.contains('on') ? 1 : 0,
 			tar = e.target,

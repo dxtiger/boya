@@ -143,7 +143,7 @@ body {
             display: block;
             width: 1.11111rem;
             height: 1.11111rem;
-            background: url(../img/icon_play.png) no-repeat 0.11111rem center rgba(0, 0, 0, 0.7);
+            background: url(../img/icon_play2.png) no-repeat 0.11111rem center rgba(255, 255, 255, 0.8);
             background-size: 100%;
             position: absolute;
             z-index: 2;
@@ -214,7 +214,7 @@ body {
             display: block;
             width: 1.11111rem;
             height: 1.11111rem;
-            background: url(../img/icon_play.png) no-repeat 0.11111rem center rgba(0, 0, 0, 0.7);
+            background: url(../img/icon_play2.png) no-repeat 0.11111rem center rgba(255, 255, 255, 0.8);
             background-size: 100%;
             position: absolute;
             z-index: 2;
@@ -229,7 +229,7 @@ body {
             color: #fff;
             font-size: 0.4rem;
             height: 0.75556rem;
-            line-height: 34px;
+            line-height: 0.75556rem;
             padding: 0 0.22222rem;
             position: absolute;
             left: 0.66667rem;
@@ -240,7 +240,7 @@ body {
           width: 8.22222rem;
           float: left;
           padding: 0 0 0 0.66667rem;
-          height: 190px;
+          height: 4.22222rem;
           position: relative; }
           .content .scroll .item .single a dd h2 {
             color: #3a3a3a;
@@ -258,9 +258,9 @@ body {
               margin: 0 0 0 5px; }
           .content .scroll .item .single a dd p {
             color: #9c968e;
-            font-size: 0.48889rem;
+            font-size: 0.53333rem;
             line-height: 0.75556rem;
-            padding: 0.22222rem 0 0 0;
+            padding: 0;
             max-height: 2.22222rem;
             overflow: hidden; }
           .content .scroll .item .single a dd span {
