@@ -1,5 +1,6 @@
 /* reset */
-html, body, div, h1, h2, h3, h4, h5, h6, p, img, dl, dt, dd, ol, ul, li, form, table, tr, th, td {
+html, body, div, h1, h2, h3, h4, h5, h6, p,
+img, dl, dt, dd, ol, ul, li, form, table, tr, th, td {
   margin: 0;
   padding: 0;
   border: 0; }
@@ -260,11 +261,11 @@ body {
             color: #9c968e;
             font-size: 0.53333rem;
             line-height: 0.75556rem;
-            padding: 0;
+            padding: 0.22222rem 0 0;
             max-height: 2.22222rem;
             overflow: hidden; }
           .content .scroll .item .single a dd span {
-            display: inline-block;
+            display: none;
             height: 0.66667rem;
             line-height: 0.66667rem;
             font-size: 0.44444rem;
@@ -644,6 +645,9 @@ body {
       .content .usercenter .info_list a span.u_history {
         background: url(../img/icon_u_history.png) no-repeat #25ccb8;
         background-size: cover; }
+      .content .usercenter .info_list a span.u_collection {
+        background: url(../img/icon_u_collection.png) no-repeat #25ccb8;
+        background-size: cover; }
     .content .usercenter .info_list a div {
       font-size: 0.62222rem;
       color: #3a3a3a;
@@ -1016,3 +1020,28 @@ body {
       font-size: 0.62222rem;
       color: #9c968e;
       line-height: 0.88889rem; }
+  .content .systemMsg .item {
+    color: #232323;
+    padding: 0.44444rem 1.11111rem 0.66667rem;
+    zoom: 1;
+    overflow: hidden;
+    font-size: 0.62222rem;
+    border-bottom: 2px solid #f0f0f0; }
+    .content .systemMsg .item .title {
+      width: 100%;
+      overflow: hidden;
+      padding: 0 0 0.44444rem; }
+      .content .systemMsg .item .title .time {
+        float: right; }
+      .content .systemMsg .item .title .icon {
+        height: 1.33333rem;
+        line-height: 1.33333rem; }
+        .content .systemMsg .item .title .icon img {
+          width: 1.33333rem;
+          height: 1.33333rem;
+          border-radius: 50%;
+          margin: 0 0.33333rem 0 0;
+          float: left; }
+    .content .systemMsg .item .con p {
+      line-height: 0.93333rem;
+      color: #484848; }

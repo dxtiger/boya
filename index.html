@@ -23,9 +23,9 @@
     <div class="music_box"></div>
     <script>
       var URL = {
-      	login : 'http://google.com' , // 登录页面地址
-      	addComment : 'http://mail.google.com', // 添加评论地址
-      	fav : 'http://google.com' // 喜欢接口
+      	login : 'http://m.boyakids.cn/' , // 登录页面地址
+      	addComment : 'http://m.boyakids.cn/', // 添加评论地址
+      	fav : 'http://m.boyakids.cn/' // 喜欢接口
       }
       
       
@@ -48,6 +48,7 @@
       </div>
       <a href="javascript:void(0)"  onclick='MContral.show()' class="back"></a>
       <a href="#" class="menu"></a>
+      <@ desc ? '<span class="btn_desc">词</span>' : '' @>
       <div class="icon"><img src="<@= icon @>"/></div>
       <div class="player">
       <div class="like <@ enjoy.self_enjoy?'on':'' @>">
@@ -65,8 +66,8 @@
       <span class="back"></span><span class="play"></span><span class="next"></span>
       </div>
       <div class="others">
+      <div class="zan <@ praise.self_praise ? 'on' : '' @>"><span><@= praise.count ? '('+ praise.count +')' : '' @></span></div>
       <div class="clock"></div>
-      <div class="comment"><span><@= comment.count ? '('+ comment.count +')' : '' @></span></div>
       <div class="share"></div>
       </div>
       </div>
@@ -119,7 +120,7 @@
       
       
       	// 测试用，播放音乐,上线请注释以下方法
-      	__M.getMusic('23',1,null,null); // item_id , yn,a,s
+      	__M.getMusic('20',1,null,null); // item_id , yn,a,s
       	callbackFn = function(data){
       		MContral.show();
       		__M.render(data.msg);

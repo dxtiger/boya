@@ -1,5 +1,6 @@
 /* reset */
-html, body, div, h1, h2, h3, h4, h5, h6, p, img, dl, dt, dd, ol, ul, li, form, table, tr, th, td {
+html, body, div, h1, h2, h3, h4, h5, h6, p,
+img, dl, dt, dd, ol, ul, li, form, table, tr, th, td {
   margin: 0;
   padding: 0;
   border: 0; }
@@ -50,7 +51,7 @@ html, body {
   bottom: 0;
   left: 0;
   background: #fff;
-  -webkit-transition: all .3s ease-in-out;
+  -webkit-transition: all 0.3s ease-in-out;
   z-index: 11;
   -webkit-transform: translate3d(0, 0, 0); }
   .music_box.on {
@@ -73,8 +74,8 @@ html, body {
       top: -2px;
       z-index: 3;
       background: #25ccb8;
-      -webkit-transition: all .3s ease-in-out;
-      transition: all .3s ease-in-out; }
+      -webkit-transition: all 0.3s ease-in-out;
+      transition: all 0.3s ease-in-out; }
     .music_box .mini .info {
       width: 100%;
       height: 100%;
@@ -135,7 +136,7 @@ html, body {
       background: rgba(0, 0, 0, 0.5);
       z-index: 10;
       -webkit-transform: translate3d(0, -150%, 0);
-      -webkit-transition: all .3s ease-in-out; }
+      -webkit-transition: all 0.3s ease-in-out; }
       .music_box .big .desc.show {
         -webkit-transform: translate3d(0, 0, 0); }
       .music_box .big .desc .wraper {
@@ -184,6 +185,19 @@ html, body {
       background-size: auto 50%;
       right: 0.66667rem;
       top: 0.44444rem; }
+    .music_box .big .btn_desc {
+      display: block;
+      width: 1.11111rem;
+      height: 1.11111rem;
+      border-radius: 0.33333rem;
+      position: absolute;
+      border: 2px solid #25ccb8;
+      color: #25ccb8;
+      font-size: 0.8rem;
+      line-height: 1.11111rem;
+      text-align: center;
+      right: 0.77778rem;
+      top: 2.66667rem; }
     .music_box .big .player {
       height: 11.11111rem;
       width: 100%;
@@ -330,18 +344,44 @@ html, body {
         position: absolute;
         width: 4.88889rem;
         height: 2.22222rem;
-        top: 0; }
-      .music_box .big .others .clock {
-        background: url(../img/icon_music_clock.png) no-repeat 0.88889rem center;
-        background-size: auto 42%;
+        top: 0;
+        out-line: none;
+        -webkit-tap-highlight-color: transparent; }
+      .music_box .big .others .zan {
+        background: url(../img/icon_zan.png) no-repeat 0.88889rem center;
+        background-size: auto 48%;
         left: 0; }
-        .music_box .big .others .clock.on {
-          background: url(../img/icon_music_clock.png) no-repeat 0.88889rem center, url(../img/icon_music_clock2.png) no-repeat 1.44444rem 1.33333rem;
-          background-size: auto 42%, auto 21%; }
-      .music_box .big .others .comment {
-        background: url(../img/icon_music_comment.png) no-repeat center;
-        background-size: auto 41%;
+        .music_box .big .others .zan i {
+          color: #25ccb8;
+          position: absolute;
+          left: 1.88889rem;
+          top: 0.88889rem;
+          font-size: 0.44444rem;
+          opacity: 0;
+          -webkit-transition: all 1s ease-in-out; }
+        .music_box .big .others .zan span {
+          color: #25ccb8;
+          position: absolute;
+          left: 1.88889rem;
+          top: 0.88889rem;
+          font-size: 0.44444rem; }
+        .music_box .big .others .zan.on {
+          background: url(../img/icon_zan_on.png) no-repeat 0.88889rem center;
+          background-size: auto 48%; }
+          .music_box .big .others .zan.on i {
+            -webkit-animation: zan 1s linear; }
+      .music_box .big .others .clock {
+        background: url(../img/bofang-54.png) no-repeat center;
+        background-size: auto 39%;
         left: 4.88889rem; }
+        .music_box .big .others .clock.on {
+          background: url(../img/biao22-68.png) no-repeat center;
+          background-size: auto 39%; }
+      .music_box .big .others .comment {
+        background: url(../img/icon_music_comment.png) no-repeat 4rem center;
+        background-size: auto 41%;
+        left: 4.88889rem;
+        display: none; }
         .music_box .big .others .comment span {
           color: #25ccb8;
           position: absolute;
@@ -349,8 +389,8 @@ html, body {
           top: 0.66667rem;
           font-size: 0.44444rem; }
       .music_box .big .others .share {
-        background: url(../img/icon_music_share.png) no-repeat center;
-        background-size: auto 42%;
+        background: url(../img/bofang-56.png) no-repeat 3.11111rem center;
+        background-size: auto 39%;
         right: 0; }
     .music_box .big .setTime, .music_box .big .shareLayer {
       width: 100%;
@@ -361,9 +401,9 @@ html, body {
       left: 0;
       top: 0;
       -webkit-transform: translate3d(0, 150%, 0);
-      -webkit-transition: all .3s ease-in-out;
+      -webkit-transition: all 0.3s ease-in-out;
       transform: translate3d(0, 150%, 0);
-      transition: all .3s ease-in-out; }
+      transition: all 0.3s ease-in-out; }
       .music_box .big .setTime.on, .music_box .big .shareLayer.on {
         -webkit-transform: translate3d(0, 0, 0);
         transform: translate3d(0, 0, 0); }
@@ -406,9 +446,9 @@ html, body {
       overflow-x: hidden;
       overflow-y: scroll;
       -webkit-transform: translate3d(0, 150%, 0);
-      -webkit-transition: all .3s ease-in-out;
+      -webkit-transition: all 0.3s ease-in-out;
       transform: translate3d(0, 150%, 0);
-      transition: all .3s ease-in-out;
+      transition: all 0.3s ease-in-out;
       -webkit-overflow-scrolling: touch; }
       .music_box .big .comments.on {
         -webkit-transform: translate3d(0, 0, 0);
@@ -511,12 +551,24 @@ html, body {
 @-webkit-keyframes music_icon {
   0% {
     -webkit-transform: rotateZ(0deg) scale3d(1, 1, 1); }
-
   50% {
     -webkit-transform: rotateZ(180deg) scale3d(1, 1, 1); }
-
   100% {
     -webkit-transform: rotateZ(360deg) scale3d(1, 1, 1); } }
+
+@-webkit-keyframes zan {
+  0% {
+    -webkit-transform: scale3d(1, 1, 1);
+    opacity: 0; }
+  50% {
+    -webkit-transform: scale3d(2.5, 2.5, 2.5);
+    opacity: 1; }
+  70% {
+    -webkit-transform: scale3d(2.5, 2.5, 2.5);
+    opacity: 1; }
+  100% {
+    -webkit-transform: scale3d(2.5, 2.5, 2.5);
+    opacity: 0; } }
 
 .header {
   width: 100%;

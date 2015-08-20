@@ -578,20 +578,28 @@ var BG_LIST = [
 ];
 
 function Music(){
-	var temp = '<!-- 底部mini播放器--><div class="mini"><div style="width:0" class="progress"></div><div class="info"><span class="play"></span><span data-v="<@= item_id @>,<@= album_id @>,<@= subject_list @>" class="next"></span><span class="name" onclick=\'MContral.show(1)\'><@= title @></span><span class="icon"><img src="<@= icon @>"/></span></div></div><!-- 满屏播放器--><div class="big"><div class="bg"><img src="<@= bg @>"/></div><a href="javascript:void(0)"  onclick=\'MContral.show()\' class="back"></a><a href="http://m.boyakids.cn/?_c=album&_a=viewAlbum&albumId=<@= album_id @>" onclick="MContral.show()" class="menu" target="frame"></a><div class="icon"><img src="<@= icon @>"/></div><div class="player"><div class="like <@ enjoy.self_enjoy?\'on\':\'\' @>"><div data-id="<@= item_id @>"></div>'
+	var temp = '<!-- 底部mini播放器--><div class="mini"><div style="width:0" class="progress"></div><div class="info"><span class="play"></span><span data-v="<@= item_id @>,<@= album_id @>,<@= subject_list @>" class="next"></span><span class="name" onclick=\'MContral.show(1)\'><@= title @></span><span class="icon"><img src="<@= icon @>"/></span></div></div>'
+	+'<!-- 满屏播放器--><div class="big"><div class="bg"><img src="<@= bg @>"/></div><a href="javascript:void(0)"  onclick=\'MContral.show()\' class="back"></a><a href="http://m.boyakids.cn/?_c=album&_a=viewAlbum&albumId=<@= album_id @>" onclick="MContral.show()" class="menu" target="frame"></a>'
+	+'<@ if(desc){ @>'
+	+'<span class="btn_desc">词</span>'
+	+'<@ } @>'
+	+'<div class="icon"><img src="<@= icon @>"/></div><div class="player"><div class="like <@ enjoy.self_enjoy?\'on\':\'\' @>"><div data-id="<@= item_id @>"></div>'
 	+'<@ if(enjoy.self_enjoy){ @>'
 	+'<span>已收藏</span>'
 	+'<@ }else{ @>'
 	+'<span>收藏</span>'
 	+'<@ } @>'
-	+'</div><div class="name"><h1><@= title @></h1>'+
-	'<@ if(anchor){ @>'+
-	'<span>主播：<@= anchor @></span>'+
-	'<@ } @>'+
-	'<@ if(from) { @>'+
-	'<span>来自：<@= from @></span>'+
-	'<@ } @>'+
-	'</div><div class="progress"><span class="start"></span><div class="prog"><div style="width:0"></div><span style="left:0" data-max=\'94\'></span></div><span class="end"></span></div><div class="btns"><span class="back"></span><span class="play"></span><span class="next" data-v="<@= item_id @>,<@= album_id @>,<@= subject_list @>"></span></div><div class="others"><div class="clock"></div><div class="comment"><span><@= comment.count ? \'(\'+ comment.count +\')\' : \'\' @></span></div><div class="share"></div></div></div><div class="setTime"><div class="con"><div class="title">设置时间</div><ul><li data-time=0>不设置</li><li data-time=1>当前音频播放完毕后关闭</li><li data-time=2>10分钟后关闭</li><li data-time=3>20分钟后关闭</li><li data-time=4>30分钟后关闭</li></ul></div></div><!-- comment--><div class="comments"><div class="back"><span></span></div><div class="list"><@ for(var key in comment.data){ @><div class="item" data-name=\'<@= comment.data[key].user_name @>\' data-id="<@= comment.data[key].user_id @>"><div class="c_icon"><img src="<@= comment.data[key].headimgurl @>"/></div><div class="info"><span>今天 18:00</span><h1><@= comment.data[key].user_name @></h1><p><@= comment.data[key].content @></p></div></div><@ } @></div><div class="add"><input type="text" placeholder="输入评论"/><div>发表</div></div></div>'
+	+'</div><div class="name"><h1><@= title @></h1>'
+	+'<@ if(anchor){ @>'
+	+'<span>主播：<@= anchor @></span>'
+	+'<@ } @>'
+	+'<@ if(from) { @>'
+	+'<span>来自：<@= from @></span>'
+	+'<@ } @>'
+	+'</div><div class="progress"><span class="start"></span><div class="prog"><div style="width:0"></div><span style="left:0" data-max=\'94\'></span></div><span class="end"></span></div><div class="btns"><span class="back"></span><span class="play"></span><span class="next" data-v="<@= item_id @>,<@= album_id @>,<@= subject_list @>"></span></div>'
+	+'<div class="others">'
+	+'<div class="zan" data-id="<@= item_id @>" data-num="<@= praise_count @>"><span><@= praise_count @></span><i>+1</i></div>'
+	+'<div class="clock"></div><div class="comment"><span></span></div><div class="share"></div></div></div><div class="setTime"><div class="con"><div class="title">设置时间</div><ul><li data-time=0>不设置</li><li data-time=1>当前音频播放完毕后关闭</li><li data-time=2>10分钟后关闭</li><li data-time=3>20分钟后关闭</li><li data-time=4>30分钟后关闭</li></ul></div></div><!-- comment--><div class="comments"><div class="back"><span></span></div><div class="list"><@ for(var key in comment.data){ @><div class="item" data-name=\'<@= comment.data[key].user_name @>\' data-id="<@= comment.data[key].user_id @>"><div class="c_icon"><img src="<@= comment.data[key].headimgurl @>"/></div><div class="info"><span>今天 18:00</span><h1><@= comment.data[key].user_name @></h1><p><@= comment.data[key].content @></p></div></div><@ } @></div><div class="add"><input type="text" placeholder="输入评论"/><div>发表</div></div></div>'
 	+'<div class="desc"><div class="wraper"><div class="item"><@= desc @></div></div></div>'
 	+'</div><!-- audio--><audio id="music_audio" autoplay="auto" src="<@= media @>"></audio>',
 	box = document.querySelector('.music_box'),
@@ -780,9 +788,10 @@ function Contrals(player){
 		mini_icon : document.querySelector('.info .icon'),
 		icon : document.querySelector('.big .icon'),
 		like : document.querySelector('.like'),
-		bg : document.querySelector('.big .bg'),
+		bg : document.querySelector('.big .btn_desc'),
 		desc : document.querySelector('.big .desc'),
-		text : document.querySelector('.big .wraper')
+		text : document.querySelector('.big .wraper'),
+		zan : document.querySelector('.others .zan')
 	},
 	timer,t=8000,current=0,req = Request(),
 	state=false;
@@ -862,9 +871,58 @@ function Contrals(player){
 	objs.next.addEventListener('click',next,false);
 	objs.mini_next.addEventListener('click',next,false);
 	objs.pre.addEventListener('click',back,false);
-	objs.bg.addEventListener('click',showDesc,false);
+	if(objs.bg) objs.bg.addEventListener('click',showDesc,false);
 	objs.desc.addEventListener('click',showDesc,false);
 	objs.text.style.cssText += ';height:11.3rem;'
+
+
+
+	objs.zan.addEventListener('click',zanFn,false);
+
+	// 赞
+	function zanFn(e){
+		e.stopPropagation&&e.stopPropagation();
+		e.preventDefault&&e.preventDefault();
+		var tar = e.target;
+		if(tar.nodeName == 'SPAN' || tar.nodeName == 'I'){
+			tar = tar.parentNode;
+		}
+		var	state = tar.classList.contains('on'),
+			num = tar.getAttribute('data-num'),
+			id = tar.getAttribute('data-id');
+		function send(){
+			req.jsonp({
+				url : URL.fav,
+				data : {
+					_c : 'api',
+					_a : 'praiseItem',
+					item_id : id
+				},
+				success : function(data){
+					if(data.ok){
+						tar.querySelector('span').innerHTML = data.msg;
+						return;
+					}else{
+						alert(data.msg);
+					}
+					// if(Object.prototype.toString.call(data.msg) == "[object String]"){
+					// 	tar.querySelector('span').innerHTML = data.msg;
+					// 	return;
+					// }
+					//tar.querySelector('span').innerHTML = Math.max(0,num*1-1) || ' ';
+				}
+			})
+		}
+		tar.classList.add('on');
+		// if(!state){
+		// 	tar.classList.add('on');
+		// }else{
+		// 	//tar.classList.remove('on');
+		// }
+		send();
+		// 临时数据
+		//tar.querySelector('span').innerHTML = num;
+	}
 
 
 	// 喜欢事件
