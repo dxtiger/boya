@@ -129,75 +129,117 @@ body {
     .content .scroll .item {
       width: 100%; }
       .content .scroll .item .title {
-        color: #3a3a3a;
-        font-size: 0.48889rem;
-        padding: 0.55556rem 0 0 0.66667rem;
-        height: 0.77778rem;
-        background: #f9f9f9;
-        border-top: 2px solid #d0cac3; }
-      .content .scroll .item .topic a {
-        display: block; }
-        .content .scroll .item .topic a .pic {
+        color: #808080;
+        font-size: 0.57778rem;
+        padding: 0;
+        margin: 0 0.55556rem 0 0.66667rem;
+        height: 1.02222rem;
+        border-bottom: 2px solid #c0c0c0;
+        line-height: 1.02222rem; }
+      .content .scroll .item .topic {
+        width: 100%;
+        height: 8.88889rem;
+        overflow: hidden;
+        position: relative;
+        margin: 0 0 0.66667rem; }
+        .content .scroll .item .topic .swiper {
+          width: 100%;
+          height: 100%;
           position: relative;
-          width: 100%; }
-          .content .scroll .item .topic a .pic::after {
-            display: block;
-            width: 1.11111rem;
-            height: 1.11111rem;
-            background: url(../img/icon_play2.png) no-repeat 0.11111rem center rgba(255, 255, 255, 0.8);
-            background-size: 100%;
-            position: absolute;
-            z-index: 2;
-            right: 0.22222rem;
-            bottom: 0.55556rem;
-            content: '';
-            border-radius: 50%; }
-          .content .scroll .item .topic a .pic img {
+          overflow: hidden; }
+          .content .scroll .item .topic .swiper .step {
             width: 100%;
-            display: block; }
-          .content .scroll .item .topic a .pic h2 {
+            height: 100%;
             position: absolute;
-            color: #fff;
-            left: 0rem;
-            bottom: 0rem;
-            overflow: hidden;
-            white-space: nowrap;
-            font-size: 0.8rem;
-            line-height: 2.77778rem;
-            height: 2.55556rem;
-            width: 100%;
-            text-indent: 0.66667rem;
-            background: -webkit-linear-gradient(270deg, transparent 0%, rgba(0, 0, 0, 0.3) 50%, rgba(0, 0, 0, 0.6) 100%); }
-        .content .scroll .item .topic a .info {
-          padding: 0.44444rem 0 0 0.77778rem;
-          position: relative; }
-          .content .scroll .item .topic a .info i {
-            display: block;
-            position: absolute;
-            width: 1.11111rem;
-            height: 1.11111rem;
-            background: url(../img/icon_hot.png) no-repeat;
-            background-size: cover;
-            left: 0.55556rem;
-            top: 0.44444rem; }
-          .content .scroll .item .topic a .info h2 {
-            color: #3a3a3a;
-            font-size: 0.88889rem;
-            line-height: 0.88889rem; }
-            .content .scroll .item .topic a .info h2 span {
-              display: inline-block;
-              background: url(../img/icon_audio.png) no-repeat;
-              background-size: 100% 100%;
-              width: 0.66667rem;
-              height: 0.88889rem;
-              margin: 0 0 0 5px; }
-          .content .scroll .item .topic a .info p {
-            color: #9c968e;
-            font-size: 0.62222rem;
-            line-height: 0.8rem;
-            padding: 0 0.44444rem 1rem 0; }
+            left: 0;
+            top: 0;
+            -webkit-transform: translate3d(0, 0, 0);
+            -webkit-transition: -webkit-transform 300ms ease-out; }
+            .content .scroll .item .topic .swiper .step img {
+              width: 100%; }
+        .content .scroll .item .topic .point {
+          width: 100%;
+          height: 0.22222rem;
+          position: absolute;
+          left: 0;
+          bottom: 0.48889rem;
+          z-index: 5;
+          text-align: center;
+          line-height: 0.22222rem; }
+          .content .scroll .item .topic .point span {
+            display: inline-block;
+            width: 0.22222rem;
+            height: 0.22222rem;
+            border-radius: 50%;
+            line-height: 0;
+            font-size: 0;
+            background: #aaa;
+            margin: 0 0.15556rem; }
+            .content .scroll .item .topic .point span.on {
+              background: #fff; }
+        .content .scroll .item .topic a {
+          display: block; }
+          .content .scroll .item .topic a .pic {
+            position: relative;
+            width: 100%; }
+            .content .scroll .item .topic a .pic::after {
+              display: block;
+              width: 1.11111rem;
+              height: 1.11111rem;
+              background: url(../img/icon_play2.png) no-repeat 0.11111rem center rgba(255, 255, 255, 0.8);
+              background-size: 100%;
+              position: absolute;
+              z-index: 2;
+              right: 0.22222rem;
+              bottom: 0.55556rem;
+              content: '';
+              border-radius: 50%; }
+            .content .scroll .item .topic a .pic img {
+              width: 100%;
+              display: block; }
+            .content .scroll .item .topic a .pic h2 {
+              position: absolute;
+              color: #fff;
+              left: 0rem;
+              bottom: 0rem;
+              overflow: hidden;
+              white-space: nowrap;
+              font-size: 0.8rem;
+              line-height: 2.77778rem;
+              height: 2.55556rem;
+              width: 100%;
+              text-indent: 0.66667rem;
+              background: -webkit-linear-gradient(270deg, transparent 0%, rgba(0, 0, 0, 0.3) 50%, rgba(0, 0, 0, 0.6) 100%); }
+          .content .scroll .item .topic a .info {
+            padding: 0.44444rem 0 0 0.77778rem;
+            position: relative; }
+            .content .scroll .item .topic a .info i {
+              display: block;
+              position: absolute;
+              width: 1.11111rem;
+              height: 1.11111rem;
+              background: url(../img/icon_hot.png) no-repeat;
+              background-size: cover;
+              left: 0.55556rem;
+              top: 0.44444rem; }
+            .content .scroll .item .topic a .info h2 {
+              color: #3a3a3a;
+              font-size: 0.88889rem;
+              line-height: 0.88889rem; }
+              .content .scroll .item .topic a .info h2 span {
+                display: inline-block;
+                background: url(../img/icon_audio.png) no-repeat;
+                background-size: 100% 100%;
+                width: 0.66667rem;
+                height: 0.88889rem;
+                margin: 0 0 0 5px; }
+            .content .scroll .item .topic a .info p {
+              color: #9c968e;
+              font-size: 0.62222rem;
+              line-height: 0.8rem;
+              padding: 0 0.44444rem 1rem 0; }
       .content .scroll .item .list {
-        padding: 1.11111rem 0 0; }
+        padding: 0.44444rem 0 0; }
       .content .scroll .item .single a {
         display: block; }
         .content .scroll .item .single a dl {
@@ -211,7 +253,7 @@ body {
           overflow: hidden;
           padding: 0 0 0 0.66667rem;
           position: relative; }
-          .content .scroll .item .single a dt::after {
+          .content .scroll .item .single a dt i {
             display: block;
             width: 1.11111rem;
             height: 1.11111rem;
@@ -223,6 +265,9 @@ body {
             bottom: 0.22222rem;
             content: '';
             border-radius: 50%; }
+            .content .scroll .item .single a dt i.lock {
+              background: url(../img/icon-lock.png) no-repeat center rgba(255, 255, 255, 0.8);
+              background-size: 130%; }
           .content .scroll .item .single a dt img {
             width: 100%; }
           .content .scroll .item .single a dt span {

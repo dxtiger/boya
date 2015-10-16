@@ -12,36 +12,74 @@
       <div class="scroll">
         <div class="wrapper">
           <div class="item">
-            <div class="topic"><a href="#">
-                <div class="pic"><img src="img/banner.png"/>
-                  <h2>小恩的秘密花园</h2>
-                </div>
-                <div class="info">
-                  <p>小恩和奶奶从田园里采摘了两篮子果蔬，各自拿着长锹和耙子，返回自己的家。然而小恩的父母在家门口，各自低下头，不知道发生了什么。...</p>
-                </div></a></div>
-            <div class="single"><a href="#">
-                <dl>
-                  <dt><img src="img/260_195.png"/><span>恐龙馆</span></dt>
-                  <dd>
-                    <h2>恐龙与史前生命</h2>
-                    <p>小恩和奶奶从田园里采摘了两篮子果蔬，各自拿着长锹和耙子，返回自己的家。然而小恩的父母在家门口，各自低下头，不知道发生了什么。...</p><span>20154</span>
-                  </dd>
-                </dl></a></div>
-            <div class="single"><a href="#">
-                <dl>
-                  <dt><img src="img/260_195.png"/><span>恐龙馆</span></dt>
-                  <dd>
-                    <h2>恐龙与史前生命</h2>
-                    <p>小恩和奶奶从田园里采摘了两篮子果蔬，各自拿着长锹和耙子，返回自己的家。然而小恩的父母在家门口，各自低下头，不知道发生了什么。...</p><span>20154</span>
-                  </dd>
-                </dl></a></div>
+            <div class="topic">
+              <div class="swiper">
+                <div class="step"><a href="#"><img src="http://cdn.boyakids.cn/upload/20151015/51/5190bc4fd8c3c4e6ad09cf5d0a47a10a_640x356.jpg"/></a></div>
+                <div class="step"><a href="#"><img src="http://cdn.boyakids.cn/upload/20151015/51/5190bc4fd8c3c4e6ad09cf5d0a47a10a_640x356.jpg"/></a></div>
+                <div class="step"><a href="#"><img src="http://cdn.boyakids.cn/upload/20151015/51/5190bc4fd8c3c4e6ad09cf5d0a47a10a_640x356.jpg"/></a></div>
+              </div>
+              <div class="point"></div>
+            </div>
+            <script>
+              ;(function(window,document){
+              	var spans = '',
+              		step = document.querySelectorAll('.swiper .step'),
+              		point = document.querySelector('.point'),
+              		c = 0,
+              		l = step.length;
+              	function set(){
+              		spans = '';
+              		for(var i=0;i<l;i++){
+              			if(i==c){
+              				spans += '<span class="on"></span>'
+              			}else{
+              				spans += '<span></span>';
+              			}
+              		}
+              		point.innerHTML = spans;
+              	}
+              	Scrolls({
+              		box : '.swiper', // 盒容器
+              		step : '.step',  // 子容器
+              		index : 0,       // 初始显示第几屏,默认值 0
+              		direction : 'h', // 方向，v = 垂直，h=水平，默认值v
+              		callback : function(index){
+              			c = index;
+              			set();
+              		}    // 回调，fn(index);传入当前屏下标
+              	});
+              })(window,document);
+            </script>
+          </div>
+          <div class="item">
+            <div class="title">今日</div>
+            <div class="list">
+              <div class="single"><a href="#">
+                  <dl>
+                    <dt><img src="img/260_195.png"/><span>恐龙馆</span><i class="lock"></i>
+                    </dt>
+                    <dd>
+                      <h2>恐龙与史前生命</h2>
+                      <p>小恩和奶奶从田园里采摘了两篮子果蔬，各自拿着长锹和耙子，返回自己的家。然而小恩的父母在家门口，各自低下头，不知道发生了什么。...</p><span>20154</span>
+                    </dd>
+                  </dl></a></div>
+              <div class="single"><a href="#">
+                  <dl>
+                    <dt><img src="img/260_195.png"/><span>恐龙馆</span><i class="play"></i>
+                    </dt>
+                    <dd>
+                      <h2>恐龙与史前生命</h2>
+                      <p>小恩和奶奶从田园里采摘了两篮子果蔬，各自拿着长锹和耙子，返回自己的家。然而小恩的父母在家门口，各自低下头，不知道发生了什么。...</p><span>20154</span>
+                    </dd>
+                  </dl></a></div>
+            </div>
           </div>
           <div class="item">
             <div class="title">2015年5月15日</div>
             <div class="list">
               <div class="single"><a href="#">
                   <dl>
-                    <dt><img src="img/260_195.png"/><span>恐龙馆</span></dt>
+                    <dt><img src="img/260_195.png"/><span>恐龙馆</span><i></i></dt>
                     <dd>
                       <h2>恐龙与史前生命</h2>
                       <p>小恩和奶奶从田园里采摘了两篮子果蔬，各自拿着长锹和耙子，返回自己的家。然而小恩的父母在家门口，各自低下头，不知道发生了什么。...</p><span>20154</span>
@@ -49,7 +87,7 @@
                   </dl></a></div>
               <div class="single"><a href="#">
                   <dl>
-                    <dt><img src="img/260_195.png"/><span>恐龙馆</span></dt>
+                    <dt><img src="img/260_195.png"/><span>恐龙馆</span><i></i></dt>
                     <dd>
                       <h2>恐龙与史前生命</h2>
                       <p>小恩和奶奶从田园里采摘了两篮子果蔬，各自拿着长锹和耙子，返回自己的家。然而小恩的父母在家门口，各自低下头，不知道发生了什么。...</p><span>20154</span>
@@ -57,7 +95,7 @@
                   </dl></a></div>
               <div class="single"><a href="#">
                   <dl>
-                    <dt><img src="img/260_195.png"/><span>恐龙馆</span></dt>
+                    <dt><img src="img/260_195.png"/><span>恐龙馆</span><i></i></dt>
                     <dd>
                       <h2>恐龙与史前生命</h2>
                       <p>小恩和奶奶从田园里采摘了两篮子果蔬，各自拿着长锹和耙子，返回自己的家。然而小恩的父母在家门口，各自低下头，不知道发生了什么。...</p><span>20154</span>

@@ -4,10 +4,28 @@
     <meta charset="UTF-8"/>
     <title>boya</title>
     <link rel="stylesheet" href="css/layout.css"/>
+    <script>
+      var APPLINK = {
+      	android : 'http://play.google.com', // android 下载地址
+      	apple : 'http://store.apple.com' // apple 下载地址
+      };
+      function setAppLink(){
+      	var ua = navigator.userAgent;
+      	if(/apple|ipad/i.test(ua)){
+      		return APPLINK.apple;
+      	}
+      	if(/android/i.test(ua)){
+      		return APPLINK.android
+      	}
+      	return APPLINK.apple;
+      }
+      var DOWNLINK = setAppLink();
+    </script>
     <script src="js/music.js"></script>
   </head>
   <body>
     <div class="header">
+      <div class="banner-down"><a href="#"><img src="img/banner-down.png" alt=""/></a></div>
       <ul>
         <li><a href="/?_c=index&amp;_a=today" target="frame" class="active">今天</a></li>
         <li><a href="/?_c=subject&amp;_a=index" target="frame">主题</a></li>

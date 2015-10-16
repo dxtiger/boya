@@ -441,11 +441,17 @@ Domready(function(){
 		return {
 			hide : hide,
 			show : show,
-			state : setState
+			state : setState,
+			distory : distory
 		}
+	}
+	function distory(){
+		hide();
+		box.innerHTML = '';
 	}
 	function hide(){
 		box.classList.add('hide');
+		box.classList.remove('on');
 		box.style.cssText = '';
 		//main.style.cssText += ';height:100%;';
 		state = 0;
@@ -469,7 +475,6 @@ Domready(function(){
 					__CreateShare(__M.getId());
 					//alert(__M.getId())
 				}catch(e){}
-				
 			}
 		}
 	}
@@ -599,7 +604,7 @@ function Music(){
 	+'</div><div class="progress"><span class="start"></span><div class="prog"><div style="width:0"></div><span style="left:0" data-max=\'94\'></span></div><span class="end"></span></div><div class="btns"><span class="back"></span><span class="play"></span><span class="next" data-v="<@= item_id @>,<@= album_id @>,<@= subject_list @>"></span></div>'
 	+'<div class="others">'
 	+'<div class="zan" data-id="<@= item_id @>" data-num="<@= praise_count @>"><span><@= praise_count @></span><i>+1</i></div>'
-	+'<div class="clock"></div><div class="comment"><span></span></div><div class="share"></div></div></div><div class="setTime"><div class="con"><div class="title">设置时间</div><ul><li data-time=0>不设置</li><li data-time=1>当前音频播放完毕后关闭</li><li data-time=2>10分钟后关闭</li><li data-time=3>20分钟后关闭</li><li data-time=4>30分钟后关闭</li></ul></div></div><!-- comment--><div class="comments"><div class="back"><span></span></div><div class="list"><@ for(var key in comment.data){ @><div class="item" data-name=\'<@= comment.data[key].user_name @>\' data-id="<@= comment.data[key].user_id @>"><div class="c_icon"><img src="<@= comment.data[key].headimgurl @>"/></div><div class="info"><span>今天 18:00</span><h1><@= comment.data[key].user_name @></h1><p><@= comment.data[key].content @></p></div></div><@ } @></div><div class="add"><input type="text" placeholder="输入评论"/><div>发表</div></div></div>'
+	+'<div class="clock"></div><div class="share"></div><div class="down"><a href="<@= DOWNLINK @>"></a></div><div class="comment"><span></span></div></div></div><div class="setTime"><div class="con"><div class="title">设置时间</div><ul><li data-time=0>不设置</li><li data-time=1>当前音频播放完毕后关闭</li><li data-time=2>10分钟后关闭</li><li data-time=3>20分钟后关闭</li><li data-time=4>30分钟后关闭</li></ul></div></div><!-- comment--><div class="comments"><div class="back"><span></span></div><div class="list"><@ for(var key in comment.data){ @><div class="item" data-name=\'<@= comment.data[key].user_name @>\' data-id="<@= comment.data[key].user_id @>"><div class="c_icon"><img src="<@= comment.data[key].headimgurl @>"/></div><div class="info"><span>今天 18:00</span><h1><@= comment.data[key].user_name @></h1><p><@= comment.data[key].content @></p></div></div><@ } @></div><div class="add"><input type="text" placeholder="输入评论"/><div>发表</div></div></div>'
 	+'<div class="desc"><div class="wraper"><div class="item"><@= desc @></div></div></div>'
 	+'</div><!-- audio--><audio id="music_audio" autoplay="auto" src="<@= media @>"></audio>',
 	box = document.querySelector('.music_box'),
@@ -711,6 +716,7 @@ function Music(){
 		data.bg = getBg();
 		//data.desc = '望庐山瀑布<br/>李白<br/>日照香炉生紫烟<br/>遥看瀑布挂前川<br/>飞流直下三千尺<br/>疑是银河落九天<br/>李白<br/>日照香炉生紫烟<br/>遥看瀑布挂前川<br/>飞流直下三千尺<br/>疑是银河落九天<br/>李白<br/>日照香炉生紫烟<br/>遥看瀑布挂前川<br/>飞流直下三千尺<br/>疑是银河落九天<br/>李白<br/>日照香炉生紫烟<br/>遥看瀑布挂前川<br/>飞流直下三千尺<br/>疑是银河落九天<br/>李白<br/>日照香炉生紫烟<br/>遥看瀑布挂前川<br/>飞流直下三千尺<br/>疑是银河落九天<br/>李白<br/>日照香炉生紫烟<br/>遥看瀑布挂前川<br/>飞流直下三千尺<br/>疑是银河落九天<br/>李白<br/>日照香炉生紫烟<br/>遥看瀑布挂前川<br/>飞流直下三千尺<br/>疑是银河落九天'
 		// item_id , 音乐id ， time = 从什么时间开始播
+		data.DOWNLINK = window.DOWNLINK || '';
 		box.innerHTML = te.render(temp,data);
 		// 初始化所有事件
 		init();
@@ -1108,6 +1114,7 @@ function Player(){
 		cb.progress && cb.progress(currentTime,duration);
 	}
 	function ended(){
+		console.log(cb.end)
 		state = false;
 		cb.end && cb.end();
 	}
@@ -1214,8 +1221,10 @@ function AutoClose(video){
 			localStorage.removeItem('startTime');
 		}
 		if(option == 1){
-			endTime = video.duration()*1000;
-			console.log(endTime)
+			//endTime = video.duration()*1000;
+			//console.log(endTime)
+			video.end(close);
+			return;
 		}
 		if(option == 2){
 			endTime = 10*60*1000
@@ -1226,7 +1235,9 @@ function AutoClose(video){
 		if(option == 4){
 			endTime = 30*60*1000
 		}
-		option&&setTime(endTime);
+		if(option && option > 1){
+			setTime(endTime);
+		}
 		
 	}
 	function clearState(){
@@ -1275,10 +1286,12 @@ function AutoClose(video){
 	AutoClose.distory = distory;
 
 	function close(){
+		video.end(null);
 		video&&video.pause();
 		clear();
 		btn.classList.remove('on');
 		MContral.hide();
+		MContral.distory();
 		// 时间设置为一次性功能，使用后，自动切换会 不设置选项
 		localStorage.setItem('autoCloseSet',0);
 		localStorage.removeItem('startTime');
@@ -1434,3 +1447,6 @@ function ShareContral(){
 
 
 }
+
+
+
