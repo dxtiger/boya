@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8"/>
+    <title>欢迎使用播呀APP</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no"/>
+    <link rel="stylesheet" href="css/index.css"/>
+    <style>
+      html,body{width:100%;height:100%;padding:0;background:#fff;}
+      html{ font-size:62.5%; }
+      .box{ 
+      	width:100%; height:100%; position:relative;
+      	background:url(img/down-bg.png) no-repeat center top; 
+      	background-size:100% auto;
+      }
+      .box ul{
+      	width:100%; position:absolute; left:0; bottom:25%;
+      }
+      .box li{
+      	width:50%; float:left; overflow:hidden;
+      }
+      .box a{
+      	display:block; text-align:center; font-size:1.4rem; color:#666;
+      }
+      .box img{
+      	display:block; width:50%; margin:0 auto 15px;
+      }
+      .layer{
+      	width:100%; height:100%; background:url(img/arrow-downtip.png) no-repeat center top rgba(0,0,0,0.6);
+      	background-size:100% auto;
+      	-webkit-transition:all .3s ease-in-out;
+      	transition:all .3s ease-in-out;
+      	-webkit-transform:translate3d(0,100%,0);
+      	transform:translate3d(0,100%,0);
+      	position:fixed; z-index:10; left:0; top:0;
+      }
+      .layer.on{
+      	-webkit-transform:translate3d(0,0,0);
+      	transform:translate3d(0,0,0);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box"> 
+      <ul>
+        <li><a href="#"> <img src="img/icon-android-down.png" alt=""/>Android客户端</a></li>
+        <li><a href="#"> <img src="img/icon-apple-down.png" alt=""/>iPhone客户端</a></li>
+      </ul>
+    </div>
+    <div class="layer"></div>
+    <script>
+      var ua = navigator.userAgent,
+      	iswx = /micromessenger/i.test(ua) ? 1:0;
+      	layer = document.querySelector('.layer');
+      function show(){
+      	layer.classList.add('on');
+      }
+      function hide(){
+      	layer.classList.remove('on');
+      }
+      window.addEventListener('click',function(e){
+      	if(iswx){
+      		var tar = e.target;
+      		if(tar.nodeName == 'A' || tar.parentNode.nodeName == 'A'){
+      			e.preventDefault();
+      			show();
+      		}
+      	}
+      },false);
+      layer.addEventListener('click',function(e){
+      	e.stopPropagation();
+      	hide();
+      },false)
+    </script>
+  </body>
+</html>
