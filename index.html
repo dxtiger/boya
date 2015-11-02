@@ -11,11 +11,11 @@
       };
       function setAppLink(){
       	var ua = navigator.userAgent;
-      	if(/apple|ipad/i.test(ua)){
-      		return APPLINK.apple;
-      	}
       	if(/android/i.test(ua)){
       		return APPLINK.android
+      	}
+      	if(/iphone|ipad/i.test(ua)){
+      		return APPLINK.apple;
       	}
       	return APPLINK.apple;
       }
