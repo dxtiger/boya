@@ -51,7 +51,7 @@ html, body {
   bottom: 0;
   left: 0;
   background: #fff;
-  -webkit-transition: all 0.3s ease-in-out;
+  -webkit-transition: all .3s ease-in-out;
   z-index: 11;
   -webkit-transform: translate3d(0, 0, 0); }
   .music_box.on {
@@ -74,8 +74,8 @@ html, body {
       top: -2px;
       z-index: 3;
       background: #25ccb8;
-      -webkit-transition: all 0.3s ease-in-out;
-      transition: all 0.3s ease-in-out; }
+      -webkit-transition: all .3s ease-in-out;
+      transition: all .3s ease-in-out; }
     .music_box .mini .info {
       width: 100%;
       height: 100%;
@@ -136,7 +136,7 @@ html, body {
       background: rgba(0, 0, 0, 0.5);
       z-index: 10;
       -webkit-transform: translate3d(0, -150%, 0);
-      -webkit-transition: all 0.3s ease-in-out; }
+      -webkit-transition: all .3s ease-in-out; }
       .music_box .big .desc.show {
         -webkit-transform: translate3d(0, 0, 0); }
       .music_box .big .desc .wraper {
@@ -409,9 +409,9 @@ html, body {
       left: 0;
       top: 0;
       -webkit-transform: translate3d(0, 150%, 0);
-      -webkit-transition: all 0.3s ease-in-out;
+      -webkit-transition: all .3s ease-in-out;
       transform: translate3d(0, 150%, 0);
-      transition: all 0.3s ease-in-out; }
+      transition: all .3s ease-in-out; }
       .music_box .big .setTime.on, .music_box .big .shareLayer.on {
         -webkit-transform: translate3d(0, 0, 0);
         transform: translate3d(0, 0, 0); }
@@ -454,9 +454,9 @@ html, body {
       overflow-x: hidden;
       overflow-y: scroll;
       -webkit-transform: translate3d(0, 150%, 0);
-      -webkit-transition: all 0.3s ease-in-out;
+      -webkit-transition: all .3s ease-in-out;
       transform: translate3d(0, 150%, 0);
-      transition: all 0.3s ease-in-out;
+      transition: all .3s ease-in-out;
       -webkit-overflow-scrolling: touch; }
       .music_box .big .comments.on {
         -webkit-transform: translate3d(0, 0, 0);

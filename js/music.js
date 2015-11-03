@@ -398,7 +398,8 @@ function setHeader(t,url){
 	var obj = [t1,t2,t3];
 	if(obj[t||0]) obj[t||0].classList.remove('hide');
 	header.classList.remove('hide');
-	main.style.cssText += ';padding:2.22222rem 0 0';
+	var h = header.offsetHeight;
+	main.style.cssText += ';padding:'+h+'px 0 0';
 	
 	if(t == 1){
 		if(url){
