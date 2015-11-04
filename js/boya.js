@@ -143,8 +143,8 @@ function Scrolls(opt){
 				path = false;
 				return;
 			}
-			e.preventDefault();
-			e.stopPropagation();
+			// e.preventDefault();
+			// e.stopPropagation();
 			x = e.touches[0].clientX;
 			y = e.touches[0].clientY;
 			path = false;
@@ -191,8 +191,10 @@ function Scrolls(opt){
 				follow();
 			}
 		}
-		e.preventDefault();
-		e.stopPropagation();
+		if(path){
+			e.preventDefault();
+			e.stopPropagation();
+		}
 	}
 	// 翻页
 	function change(){
