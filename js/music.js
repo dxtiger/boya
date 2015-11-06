@@ -1449,5 +1449,39 @@ function ShareContral(){
 
 }
 
+// layer alert
+function layerAlert(){
+	var layer = document.querySelector('.layer-alert');
+	if(!layer){
+		console.log('.layer-alert is not found!');
+		return;
+	}
+	var close = layer.querySelector('.close'),
+		btn = layer.querySelector('div'),
+		state = false;
+	function show() {
+		layer.classList.add('on');
+	}
+	function  hide(e) {
+		e.stopPropagation();
+		e.preventDefault();
+		layer.classList.remove('on');
+		close.removeEventListener('click',hide,false);
+	}
+	function down(e){
+		e.stopPropagation();
+		e.preventDefault();
+		if(DOWNLINK){
+			location.href = DOWNLINK;
+		}
+		btn.removeEventListener('click',down,false);
+	}
+	
+	btn.addEventListener('click',down,false);
+	close.addEventListener('click',hide,false);
+	show();
+}
+
+
 
 

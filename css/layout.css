@@ -578,6 +578,53 @@ html, body {
     -webkit-transform: scale3d(2.5, 2.5, 2.5);
     opacity: 0; } }
 
+.layer-alert {
+  background: rgba(0, 0, 0, 0.5);
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 20;
+  -webkit-transform: translate3d(0, 150%, 0);
+  -webkit-transition: all 0.3s ease-in-out; }
+  .layer-alert.on {
+    -webkit-transform: translate3d(0, 0, 0); }
+  .layer-alert .layer {
+    width: 10.22222rem;
+    height: 6.66667rem;
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    background: #fff;
+    border-radius: 0.44444rem 0.44444rem 0 0; }
+    .layer-alert .layer .close {
+      color: #0EB6C3;
+      font-size: 0.84444rem;
+      width: 1.11111rem;
+      height: 1.11111rem;
+      position: absolute;
+      right: 0.22222rem;
+      top: 0;
+      text-align: center;
+      line-height: 1.11111rem;
+      -webkit-transform: rotateZ(45deg);
+      transform: rotateZ(45deg); }
+    .layer-alert .layer p {
+      height: 4.44444rem;
+      line-height: 4.44444rem;
+      font-size: 0.62222rem;
+      text-align: center;
+      border-bottom: 2px solid #e7e7e7; }
+    .layer-alert .layer div {
+      text-align: center;
+      line-height: 2.22222rem;
+      font-size: 0.66667rem;
+      color: #0EB6C3; }
+
 .banner-down {
   width: 100%; }
   .banner-down img {
