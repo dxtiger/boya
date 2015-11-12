@@ -13,12 +13,14 @@
         <div class="wrapper">
           <div class="item">
             <div class="topic">
-              <div class="swiper">
-                <div class="step"><a href="http://www.baidu.com"><img src="http://cdn.boyakids.cn/upload/20151015/51/5190bc4fd8c3c4e6ad09cf5d0a47a10a_640x356.jpg"/></a></div>
-                <div class="step"><a href="http://www.baidu.com"><img src="http://cdn.boyakids.cn/upload/20151015/51/5190bc4fd8c3c4e6ad09cf5d0a47a10a_640x356.jpg"/></a></div>
-                <div class="step"><a href="http://www.baidu.com"><img src="http://cdn.boyakids.cn/upload/20151015/51/5190bc4fd8c3c4e6ad09cf5d0a47a10a_640x356.jpg"/></a></div>
+              <div class="swiper swiper-container">
+                <div class="swiper-wrapper">
+                  <div class="step swiper-slide"><a href="http://www.baidu.com"><img src="http://cdn.boyakids.cn/upload/20151101/64/645e51410b9628ff5a412a348b80dd79_640x356.jpg"/></a></div>
+                  <div class="step swiper-slide"><a href="http://www.baidu.com"><img src="http://cdn.boyakids.cn/upload/20151101/ca/ca76aeae5620a3439cd071cb511e12c3_640x356.jpg"/></a></div>
+                  <div class="step swiper-slide"><a href="http://www.baidu.com"><img src="http://cdn.boyakids.cn/upload/20151015/51/5190bc4fd8c3c4e6ad09cf5d0a47a10a_640x356.jpg"/></a></div>
+                </div>
               </div>
-              <div class="point"></div>
+              <div class="point"> </div>
             </div>
             <script>
               ;(function(window,document){
@@ -38,16 +40,21 @@
               		}
               		point.innerHTML = spans;
               	}
-              	Scrolls({
-              		box : '.swiper', // 盒容器
-              		step : '.step',  // 子容器
-              		index : 0,       // 初始显示第几屏,默认值 0
-              		direction : 'h', // 方向，v = 垂直，h=水平，默认值v
-              		callback : function(index){
-              			c = index;
-              			set();
-              		}    // 回调，fn(index);传入当前屏下标
-              	});
+              	new Swiper ('.swiper', {
+              		loop:true,
+              		autoplay:3000,
+              		onSlideChangeEnd:function(s){
+              			var index = s.activeIndex -1;
+              			c= index;
+              			if(c<0){
+              				c = l-1;
+              			}
+              			if(c==l){
+              				c=0
+              			}
+              			set()
+              		}
+              	})   
               })(window,document);
             </script>
           </div>
