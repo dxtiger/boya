@@ -1113,6 +1113,90 @@ body {
     .content .systemMsg .item .con p {
       line-height: 0.93333rem;
       color: #484848; }
+  .content .buy dl {
+    width: 15.11111rem;
+    overflow: hidden;
+    padding: 0.77778rem 0.44444rem 0; }
+  .content .buy dt {
+    width: 4.44444rem;
+    height: 4.44444rem;
+    position: relative;
+    float: left; }
+    .content .buy dt img {
+      width: 100%;
+      height: 100%;
+      border-radius: 0.22222rem; }
+    .content .buy dt i {
+      display: block;
+      background: url(../img/icon_audio.png) no-repeat;
+      background-size: auto 100%;
+      width: 0.88889rem;
+      height: 1.11111rem;
+      position: absolute;
+      z-index: 2;
+      right: 0.44444rem;
+      bottom: 0.44444rem; }
+    .content .buy dt .vip {
+      display: block;
+      background: url(../img/vip-10.png) no-repeat;
+      background-size: auto 100%;
+      width: 2rem;
+      height: 0.66667rem;
+      position: absolute;
+      z-index: 2;
+      left: 0;
+      top: 0;
+      overflow: hidden;
+      border-radius: 0.22222rem 0 0 0; }
+  .content .buy dd {
+    width: 10rem;
+    float: left;
+    padding: 0 0 0 0.66667rem; }
+    .content .buy dd h2 {
+      color: #3a3a3a;
+      font-size: 0.71111rem;
+      margin: 0 0 0.33333rem; }
+    .content .buy dd p {
+      color: #666;
+      font-size: 0.57778rem;
+      line-height: 1.11111rem;
+      max-height: 2.22222rem;
+      overflow: hidden;
+      min-height: 2.22222rem; }
+    .content .buy dd span {
+      color: #666;
+      font-size: 0.57778rem;
+      display: block;
+      text-align: right; }
+  .content .buy .info {
+    padding: 0 0.44444rem;
+    margin: 0.66667rem 0 0; }
+    .content .buy .info .price {
+      border-top: 2px solid #959595;
+      height: 1.77778rem;
+      font-size: 0.71111rem;
+      color: #f53011;
+      text-align: right;
+      line-height: 1.77778rem; }
+    .content .buy .info p {
+      padding: 0.66667rem;
+      border-radius: 0.44444rem 0.44444rem 0 0;
+      background: #f6f6f6;
+      color: #666;
+      font-size: 0.66667rem;
+      line-height: 1.02222rem;
+      min-height: 7.55556rem; }
+    .content .buy .info a {
+      display: block;
+      width: 7.77778rem;
+      height: 2rem;
+      margin: 1.11111rem auto;
+      background: #148174;
+      color: #fff;
+      text-align: center;
+      line-height: 2rem;
+      font-size: 0.66667rem;
+      border-radius: 0.13333rem; }
 
 /**
  * Swiper 3.1.2
