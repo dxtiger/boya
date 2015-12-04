@@ -654,10 +654,11 @@ function Music(){
 					if(data.msg.item_id == item_id){
 						return;
 					}
+					var old = item_id;
 					item_id = data.msg.item_id;
 					a = data.msg.album_id;
 					s = data.msg.subject_list
-					render(data.msg);
+					render(data.msg,old);
 					return;
 				}else{
 					alert(decodeURIComponent(data.msg))
@@ -689,7 +690,7 @@ function Music(){
 	}
 
 	// 渲染
-	function render(data){
+	function render(data,oid){
 		if(P){
 			P.pause();
 		}
@@ -708,7 +709,7 @@ function Music(){
 		
 		if(P&&__M){
 			MusicCount({
-				item_id : __M.getId(),
+				item_id : oid,
 				stop : P.getProgress()
 			})
 		}
